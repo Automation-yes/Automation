@@ -1,0 +1,26 @@
+{
+    "default": {
+        "formatOptions": {
+            "snippetInterface": "async-await"
+        },
+        "paths": [
+            "src/test/features/*/UI/*.feature",
+            "src/test/features/*/API/*.feature"
+        ],
+        "publishQuite": true,
+        "require": [
+            "src/test/steps/*/API/*.steps.ts",
+            "src/test/steps/*/UI/*.steps.ts",
+            "src/test/hooks/hooks.ts"
+        ],
+
+        "requireModule": [
+            "ts-node/register"
+        ],
+        "format": [
+            "progress-bar",
+            "json:test-results/cucumber-report.json",
+            "html:test-results/cucumber-report.html"
+        ]
+    }
+}

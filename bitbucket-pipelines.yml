@@ -1,0 +1,36 @@
+image: mcr.microsoft.com/playwright
+pipelines:
+  default:
+    - step:
+        name: Checkout
+        script:
+          - git checkout $BITBUCKET_COMMIT
+    - step:
+        name: Install Dependencies
+        caches:
+          - node
+        script:
+          - npm ci
+          - npm install @playwright/test@latest
+          - npm run test-staging
+          - npm install multiple-cucumber-html-reporter
+          - npm install archiver
+          - npm run posttest
+        artifacts:
+          - test-results/combined-report.zip
+    - step:
+        name: Download HTML Report
+        script:
+          - pipe: atlassian/bitbucket-upload-file:0.1.2
+            variables:
+              BITBUCKET_USERNAME: "${BITBUCKET_USERNAME}"
+              BITBUCKET_APP_PASSWORD: "${BITBUCKET_APP_PASSWORD}"
+              FILENAME: "test-results/combined-report.zip"
+    - step:
+         name: Message to Slack
+         script:
+          - pipe: atlassian/slack-notify:1.1.0
+            variables:
+              WEBHOOK_URL: ''
+              MESSAGE: "Build $BITBUCKET_BUILD_NUMBER completed. Download the report here: [Download Report](https://bitbucket.org/gopitf/tf_businessplan_automation/downloads/combined-report.zip)"
+              REPORT: 'test-results/combined-report.zip'
