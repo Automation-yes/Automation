@@ -1,4 +1,4 @@
-name: Automation Tests Bot
+name: Automation Tests Bot -1
 # Trigger Update
 
 on:
@@ -37,6 +37,11 @@ jobs:
                       "text": "Test Run Started",
                       "weight": "Bolder",
                       "size": "Medium"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "[Click here to view workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
+                      "wrap": true
                     }
                   ]
                 }
@@ -81,6 +86,11 @@ jobs:
                     {
                       "type": "TextBlock",
                       "text": "The automation test run has finished.",
+                      "wrap": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "[Click here to view workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
                       "wrap": true
                     }
                   ]
