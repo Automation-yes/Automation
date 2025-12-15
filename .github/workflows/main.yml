@@ -39,5 +39,6 @@ jobs:
         uses: jdcargile/ms-teams-notification@v1.4
         with:
           github-token: ${{ github.token }}
-          webhook-uri: 'https://defaultf6156a017c5b4c82b9ba5750c10953.6e.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/55681a967c6748349fbdf91890888be0/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KeQCeyp5S9fnYdMETd8nxugBeyOnWI79R5nUd6xZnso'
-          summary: Test Run Completed
+          # Correct input names based on error message
+          ms-teams-webhook-uri: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          notification-summary: Test Run Completed
