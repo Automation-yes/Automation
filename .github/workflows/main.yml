@@ -22,7 +22,27 @@ jobs:
 
       - name: Notify Test Start
         run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"text": "Test Run Started"}' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "type": "message",
+            "attachments": [
+              {
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "content": {
+                  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                  "type": "AdaptiveCard",
+                  "version": "1.2",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Test Run Started",
+                      "weight": "Bolder",
+                      "size": "Medium"
+                    }
+                  ]
+                }
+              }
+            ]
+          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
