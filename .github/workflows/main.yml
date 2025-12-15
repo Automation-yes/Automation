@@ -1,20 +1,23 @@
 name: Automation Tests
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
 
 jobs:
   test:
     name: Run Tests & Notify
+    # Run only if it's a PR comment containing '/bot' OR a manual trigger
+    if: (github.event.issue.pull_request && contains(github.event.comment.body, '/bot')) || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          # If triggered by comment, checkout the PR code. Otherwise (manual), use default.
+          ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,5 +39,5 @@ jobs:
         uses: jdcargile/ms-teams-notification@v1.4
         with:
           github-token: ${{ github.token }}
-          webhook-uri: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          webhook-uri: 'https://defaultf6156a017c5b4c82b9ba5750c10953.6e.environment.api.powerplatform.com/powerautomate/automations/direct/workflows/55681a967c6748349fbdf91890888be0/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KeQCeyp5S9fnYdMETd8nxugBeyOnWI79R5nUd6xZnso'
           summary: Test Run Completed
