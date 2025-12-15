@@ -20,11 +20,8 @@ jobs:
           ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
 
       - name: Notify Test Start
-        uses: jdcargile/ms-teams-notification@v1.4
-        with:
-          github-token: ${{ github.token }}
-          ms-teams-webhook-uri: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          notification-summary: Test Run Started
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"text": "Test Run Started"}' "${{ secrets.TEAMS_WEBHOOK_URL }}"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
