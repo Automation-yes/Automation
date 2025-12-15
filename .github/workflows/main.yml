@@ -1,4 +1,4 @@
-name: Automation Tests
+name: Automation Tests Bot
 
 on:
   issue_comment:
