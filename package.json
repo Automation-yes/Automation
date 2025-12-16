@@ -6,7 +6,7 @@
   "preset": "jest-playwright-preset",
   "testTimeout": 30000,
   "scripts": {
-    "test-qc": "cucumber-js test",
+    "test-qc": "set HEADLESS=true && cucumber-js test",
     "test-smoke-staging": "cucumber-js test --tags @smoke",
     "test-smoke-prod": "set PRODUCTION=true && cucumber-js test --tags @smoke",
     "test-regression-staging": "cucumber-js test --tags @regression",
