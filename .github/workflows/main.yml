@@ -15,10 +15,22 @@ jobs:
 
     steps:
       - name: Checkout Code
+        id: checkout
         uses: actions/checkout@v4
         with:
           # If triggered by comment, checkout the PR code. Otherwise (manual), use default.
           ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
+
+      - name: Notify Checkout Status
+        if: always()
+        run: |
+          OUTCOME="${{ steps.checkout.outcome }}"
+          ICON="✅"
+          if [ "$OUTCOME" != "success" ]; then ICON="❌"; fi
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "type": "message",
+            "attachments": [{ "contentType": "application/vnd.microsoft.card.adaptive", "content": { "$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.2", "body": [{ "type": "TextBlock", "text": "'"$ICON"' Checkout Code: '"$OUTCOME"'", "weight": "Bolder" }] } }]
+          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
 
       - name: Notify Test Start
         run: |
@@ -56,17 +68,45 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
+        id: dependencies
         run: npm ci
 
+      - name: Notify Dependencies Status
+        if: always()
+        run: |
+          OUTCOME="${{ steps.dependencies.outcome }}"
+          ICON="✅"
+          if [ "$OUTCOME" != "success" ]; then ICON="❌"; fi
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "type": "message",
+            "attachments": [{ "contentType": "application/vnd.microsoft.card.adaptive", "content": { "$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.2", "body": [{ "type": "TextBlock", "text": "'"$ICON"' Install Dependencies: '"$OUTCOME"'", "weight": "Bolder" }] } }]
+          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+
       - name: Install Playwright Browsers
+        id: browsers
         run: npx playwright install --with-deps
 
+      - name: Notify Browsers Status
+        if: always()
+        run: |
+          OUTCOME="${{ steps.browsers.outcome }}"
+          ICON="✅"
+          if [ "$OUTCOME" != "success" ]; then ICON="❌"; fi
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "type": "message",
+            "attachments": [{ "contentType": "application/vnd.microsoft.card.adaptive", "content": { "$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.2", "body": [{ "type": "TextBlock", "text": "'"$ICON"' Install Browsers: '"$OUTCOME"'", "weight": "Bolder" }] } }]
+          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+
       - name: Run Tests
+        id: tests
         run: npm run test-qc
 
       - name: Microsoft Teams Notification
         if: always()
         run: |
+          STATUS="${{ job.status }}"
+          ICON="✅"
+          if [ "$STATUS" != "success" ]; then ICON="❌"; fi
           curl -X POST -H "Content-Type: application/json" -d '{
             "type": "message",
             "attachments": [
@@ -85,14 +125,6 @@ jobs:
                     },
                     {
                       "type": "TextBlock",
-                      "text": "The automation test run has finished.",
-                      "wrap": true
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "[Click here to view workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
-                      "wrap": true
-                    }
                   ]
                 }
               }
