@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 334625799
+              "duration": 1049955299
             }
           },
           {
@@ -23,12 +23,11 @@
             "line": 4,
             "name": "Login into application",
             "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
+              "location": "src\\test\\steps\\IR-Reporting\\UI\\irReporting.steps.ts:6"
             },
             "result": {
-              "status": "failed",
-              "duration": 34142329899,
-              "error_message": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('//input[@id=\\'password\\']') to be visible\u001b[22m\n\n    at CommonPage.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:74:49)\n    at step (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:33:23)\n    at Object.next (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:14:53)\n    at C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:8:71\n    at __awaiter (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:4:12)\n    at CommonPage.ActionHelper.waitForElementVerification (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:189:16)\n    at CommonPage.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\pageObject\\commonPage.ts:26:21)\n    at step (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\pageObject\\commonPage.ts:48:23)\n    at Object.next (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\pageObject\\commonPage.ts:29:53)\n    at fulfilled (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\pageObject\\commonPage.ts:20:58)"
+              "status": "passed",
+              "duration": 15157774699
             }
           },
           {
@@ -37,11 +36,11 @@
             "line": 5,
             "name": "User opne the 360 and 38463",
             "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
+              "location": "src\\test\\steps\\IR-Reporting\\UI\\irReporting.steps.ts:10"
             },
             "result": {
-              "status": "skipped",
-              "duration": 0
+              "status": "passed",
+              "duration": 962700
             }
           },
           {
@@ -50,11 +49,11 @@
             "line": 6,
             "name": "navigate to IR Reporting page",
             "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
+              "location": "src\\test\\steps\\IR-Reporting\\UI\\irReporting.steps.ts:14"
             },
             "result": {
-              "status": "skipped",
-              "duration": 0
+              "status": "passed",
+              "duration": 181493908599
             }
           },
           {
@@ -63,20 +62,19 @@
             "line": 7,
             "name": "Verify that user is on IR Reporting page",
             "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
+              "location": "src\\test\\steps\\IR-Reporting\\UI\\irReporting.steps.ts:18"
             },
             "result": {
-              "status": "skipped",
-              "duration": 0
+              "status": "passed",
+              "duration": 780299
             }
           },
           {
             "keyword": "After",
             "hidden": true,
             "result": {
-              "status": "failed",
-              "duration": 11639399,
-              "error_message": "page.screenshot: Target page, context or browser has been closed\n    at World.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:26:44)\n    at step (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:33:23)\n    at Object.next (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:14:53)\n    at C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:8:71\n    at __awaiter (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:4:12)\n    at World.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:81:12)\n    at Object.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\user_code_runner.ts:37:21)\n    at Object.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\step_runner.ts:50:41)\n    at async TestCaseRunner.invokeStep (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:137:12)\n    at async TestCaseRunner.runHook (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:273:12)\n    at async C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:231:18\n    at async TestCaseRunner.aroundTestStep (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:170:28)\n    at async TestCaseRunner.runAttempt (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:218:7)\n    at async TestCaseRunner.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:188:29)\n    at async Runtime.runTestCase (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\index.ts:89:20)\n    at async Runtime.start (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\index.ts:116:7)\n    at async runCucumber (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\api\\run_cucumber.ts:125:19)\n    at async Cli.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\cli\\index.ts:79:25)\n    at async Object.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\cli\\run.ts:33:14)"
+              "status": "passed",
+              "duration": 146415399
             }
           }
         ],
@@ -84,92 +82,6 @@
           {
             "name": "@qc",
             "line": 9
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "ir-reporting;login-into-qc-page-and-land-on-irreporting",
-        "keyword": "Scenario",
-        "line": 17,
-        "name": "Login into QC page and land on irreporting",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 372152800
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 4,
-            "name": "Login into application",
-            "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
-            },
-            "result": {
-              "status": "failed",
-              "duration": 1705073399,
-              "error_message": "page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"https://login.qc.notified.com/Login\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at CommonPage.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:15:32)\n    at step (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:33:23)\n    at Object.next (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:14:53)\n    at fulfilled (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\util\\actionHelpers\\actionHelper.ts:5:58)"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 5,
-            "name": "User opne the 396 and 6077",
-            "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 6,
-            "name": "navigate to IR Reporting page",
-            "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 7,
-            "name": "Verify that user is on IR Reporting page",
-            "match": {
-              "location": "..\\..\\..\\PlywrightSkeltonNew\\PlywrightSkeltonNew\\node_modules\\@cucumber\\cucumber\\src\\support_code_library_builder\\get_definition_line_and_uri.ts:13"
-            },
-            "result": {
-              "status": "skipped",
-              "duration": 0
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "failed",
-              "duration": 8077099,
-              "error_message": "page.screenshot: Target page, context or browser has been closed\n    at World.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:26:44)\n    at step (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:33:23)\n    at Object.next (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:14:53)\n    at C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:8:71\n    at __awaiter (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:4:12)\n    at World.<anonymous> (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\Automation\\src\\test\\hooks\\hooks.ts:81:12)\n    at Object.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\user_code_runner.ts:37:21)\n    at Object.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\step_runner.ts:50:41)\n    at async TestCaseRunner.invokeStep (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:137:12)\n    at async TestCaseRunner.runHook (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:273:12)\n    at async C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:231:18\n    at async TestCaseRunner.aroundTestStep (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:170:28)\n    at async TestCaseRunner.runAttempt (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:218:7)\n    at async TestCaseRunner.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\test_case_runner.ts:188:29)\n    at async Runtime.runTestCase (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\index.ts:89:20)\n    at async Runtime.start (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\runtime\\index.ts:116:7)\n    at async runCucumber (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\api\\run_cucumber.ts:125:19)\n    at async Cli.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\cli\\index.ts:79:25)\n    at async Object.run (C:\\Users\\BEGopiKrishna\\Downloads\\PlywrightSkelton(New)\\PlywrightSkelton(New)\\node_modules\\@cucumber\\cucumber\\src\\cli\\run.ts:33:14)"
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@uat",
-            "line": 14
           }
         ],
         "type": "scenario"

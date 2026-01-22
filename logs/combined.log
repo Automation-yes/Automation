@@ -1,392 +1,236 @@
-2025-12-05 16:08:34 [INFO]: UNDEFINED
-2025-12-05 16:08:34 [INFO]: UNDEFINED
-2025-12-05 16:09:16 [INFO]: UNDEFINED
-2025-12-05 16:09:17 [INFO]: UNDEFINED
-2025-12-05 16:10:16 [INFO]: UNDEFINED
-2025-12-05 16:10:17 [INFO]: UNDEFINED
-2025-12-05 16:12:21 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-05 16:12:25 [INFO]: UNDEFINED
-2025-12-05 16:12:25 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-05 16:12:29 [INFO]: UNDEFINED
-2025-12-05 16:16:26 [INFO]: Launching browser and navigating to https://login.uat.notified.com/Login
-2025-12-05 16:16:32 [INFO]: UNDEFINED
-2025-12-05 16:16:32 [INFO]: UNDEFINED
-2025-12-05 16:16:32 [INFO]: UNDEFINED
-2025-12-05 16:16:33 [INFO]: UNDEFINED
-2025-12-05 16:16:33 [INFO]: UNDEFINED
-2025-12-05 16:16:33 [INFO]: UNDEFINED
-2025-12-05 16:16:33 [INFO]: UNDEFINED
-2025-12-05 16:16:34 [INFO]: UNDEFINED
-2025-12-05 16:16:34 [INFO]: UNDEFINED
-2025-12-05 16:16:34 [INFO]: UNDEFINED
-2025-12-05 16:16:34 [INFO]: UNDEFINED
-2025-12-05 16:16:34 [INFO]: UNDEFINED
-2025-12-05 16:16:34 [INFO]: UNDEFINED
-2025-12-05 16:16:35 [INFO]: UNDEFINED
-2025-12-05 16:16:35 [INFO]: UNDEFINED
-2025-12-05 16:16:35 [INFO]: UNDEFINED
-2025-12-05 16:16:35 [INFO]: UNDEFINED
-2025-12-05 16:16:36 [INFO]: UNDEFINED
-2025-12-05 16:16:36 [INFO]: UNDEFINED
-2025-12-05 16:16:36 [INFO]: UNDEFINED
-2025-12-05 16:16:36 [INFO]: UNDEFINED
-2025-12-05 16:16:36 [INFO]: UNDEFINED
-2025-12-05 16:16:37 [INFO]: UNDEFINED
-2025-12-05 16:16:37 [INFO]: UNDEFINED
-2025-12-05 16:16:37 [INFO]: UNDEFINED
-2025-12-05 16:16:37 [INFO]: UNDEFINED
-2025-12-05 16:16:38 [INFO]: UNDEFINED
-2025-12-05 16:16:38 [INFO]: UNDEFINED
-2025-12-05 16:16:39 [INFO]: UNDEFINED
-2025-12-05 16:16:39 [INFO]: UNDEFINED
-2025-12-05 16:16:39 [INFO]: UNDEFINED
-2025-12-05 16:16:40 [INFO]: UNDEFINED
-2025-12-05 16:16:40 [INFO]: UNDEFINED
-2025-12-05 16:16:41 [INFO]: UNDEFINED
-2025-12-05 16:16:42 [INFO]: UNDEFINED
-2025-12-05 16:16:42 [INFO]: UNDEFINED
-2025-12-05 16:16:43 [INFO]: UNDEFINED
-2025-12-05 16:16:44 [INFO]: UNDEFINED
-2025-12-05 16:16:44 [INFO]: UNDEFINED
-2025-12-05 16:16:45 [INFO]: UNDEFINED
-2025-12-05 16:16:45 [INFO]: UNDEFINED
-2025-12-05 16:16:46 [INFO]: UNDEFINED
-2025-12-05 16:16:46 [INFO]: UNDEFINED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:47 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:16:48 [INFO]: FAILED
-2025-12-05 16:22:46 [INFO]: Launching browser and navigating to https://login.uat.notified.com/Login
-2025-12-05 16:22:51 [INFO]: UNDEFINED
-2025-12-05 16:22:51 [INFO]: UNDEFINED
-2025-12-05 16:22:52 [INFO]: UNDEFINED
-2025-12-05 16:22:52 [INFO]: UNDEFINED
-2025-12-05 16:22:52 [INFO]: UNDEFINED
-2025-12-05 16:22:52 [INFO]: UNDEFINED
-2025-12-05 16:22:53 [INFO]: UNDEFINED
-2025-12-05 16:22:53 [INFO]: UNDEFINED
-2025-12-05 16:22:53 [INFO]: UNDEFINED
-2025-12-05 16:22:53 [INFO]: UNDEFINED
-2025-12-05 16:22:53 [INFO]: UNDEFINED
-2025-12-05 16:22:53 [INFO]: UNDEFINED
-2025-12-05 16:22:54 [INFO]: UNDEFINED
-2025-12-05 16:22:54 [INFO]: UNDEFINED
-2025-12-05 16:22:54 [INFO]: UNDEFINED
-2025-12-05 16:22:54 [INFO]: UNDEFINED
-2025-12-05 16:22:55 [INFO]: UNDEFINED
-2025-12-05 16:22:55 [INFO]: UNDEFINED
-2025-12-05 16:22:55 [INFO]: UNDEFINED
-2025-12-05 16:22:55 [INFO]: UNDEFINED
-2025-12-05 16:22:55 [INFO]: UNDEFINED
-2025-12-05 16:22:56 [INFO]: UNDEFINED
-2025-12-05 16:22:56 [INFO]: UNDEFINED
-2025-12-05 16:22:56 [INFO]: UNDEFINED
-2025-12-05 16:22:56 [INFO]: UNDEFINED
-2025-12-05 16:22:56 [INFO]: UNDEFINED
-2025-12-05 16:22:56 [INFO]: UNDEFINED
-2025-12-05 16:22:57 [INFO]: UNDEFINED
-2025-12-05 16:22:57 [INFO]: UNDEFINED
-2025-12-05 16:22:57 [INFO]: UNDEFINED
-2025-12-05 16:22:57 [INFO]: UNDEFINED
-2025-12-05 16:22:57 [INFO]: UNDEFINED
-2025-12-05 16:22:58 [INFO]: UNDEFINED
-2025-12-05 16:22:58 [INFO]: UNDEFINED
-2025-12-05 16:22:58 [INFO]: UNDEFINED
-2025-12-05 16:22:58 [INFO]: UNDEFINED
-2025-12-05 16:22:59 [INFO]: UNDEFINED
-2025-12-05 16:22:59 [INFO]: UNDEFINED
-2025-12-05 16:23:00 [INFO]: UNDEFINED
-2025-12-05 16:23:00 [INFO]: UNDEFINED
-2025-12-05 16:23:00 [INFO]: UNDEFINED
-2025-12-05 16:23:01 [INFO]: UNDEFINED
-2025-12-05 16:23:01 [INFO]: UNDEFINED
-2025-12-05 16:23:02 [INFO]: UNDEFINED
-2025-12-05 16:23:03 [INFO]: UNDEFINED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:03 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:23:04 [INFO]: FAILED
-2025-12-05 16:26:16 [INFO]: Launching browser and navigating to https://login.uat.notified.com/Login
-2025-12-05 16:26:22 [INFO]: UNDEFINED
-2025-12-05 16:26:22 [INFO]: UNDEFINED
-2025-12-05 16:26:23 [INFO]: UNDEFINED
-2025-12-05 16:26:23 [INFO]: UNDEFINED
-2025-12-05 16:26:24 [INFO]: UNDEFINED
-2025-12-05 16:26:24 [INFO]: UNDEFINED
-2025-12-05 16:26:24 [INFO]: UNDEFINED
-2025-12-05 16:26:25 [INFO]: UNDEFINED
-2025-12-05 16:26:25 [INFO]: UNDEFINED
-2025-12-05 16:26:26 [INFO]: UNDEFINED
-2025-12-05 16:26:26 [INFO]: UNDEFINED
-2025-12-05 16:26:27 [INFO]: UNDEFINED
-2025-12-05 16:26:27 [INFO]: UNDEFINED
-2025-12-05 16:26:27 [INFO]: UNDEFINED
-2025-12-05 16:26:28 [INFO]: UNDEFINED
-2025-12-05 16:26:28 [INFO]: UNDEFINED
-2025-12-05 16:26:29 [INFO]: UNDEFINED
-2025-12-05 16:26:29 [INFO]: UNDEFINED
-2025-12-05 16:26:30 [INFO]: UNDEFINED
-2025-12-05 16:26:30 [INFO]: UNDEFINED
-2025-12-05 16:26:30 [INFO]: UNDEFINED
-2025-12-05 16:26:31 [INFO]: UNDEFINED
-2025-12-05 16:26:31 [INFO]: UNDEFINED
-2025-12-05 16:26:32 [INFO]: UNDEFINED
-2025-12-05 16:26:32 [INFO]: UNDEFINED
-2025-12-05 16:26:33 [INFO]: UNDEFINED
-2025-12-05 16:26:33 [INFO]: UNDEFINED
-2025-12-05 16:26:33 [INFO]: UNDEFINED
-2025-12-05 16:26:34 [INFO]: UNDEFINED
-2025-12-05 16:26:34 [INFO]: UNDEFINED
-2025-12-05 16:26:35 [INFO]: UNDEFINED
-2025-12-05 16:26:35 [INFO]: UNDEFINED
-2025-12-05 16:26:36 [INFO]: UNDEFINED
-2025-12-05 16:26:36 [INFO]: UNDEFINED
-2025-12-05 16:26:36 [INFO]: UNDEFINED
-2025-12-05 16:26:37 [INFO]: UNDEFINED
-2025-12-05 16:26:37 [INFO]: UNDEFINED
-2025-12-05 16:26:38 [INFO]: UNDEFINED
-2025-12-05 16:26:38 [INFO]: UNDEFINED
-2025-12-05 16:26:39 [INFO]: UNDEFINED
-2025-12-05 16:26:40 [INFO]: UNDEFINED
-2025-12-05 16:26:41 [INFO]: UNDEFINED
-2025-12-05 16:26:42 [INFO]: UNDEFINED
-2025-12-05 16:26:42 [INFO]: UNDEFINED
-2025-12-05 16:26:43 [INFO]: UNDEFINED
-2025-12-05 16:26:44 [INFO]: UNDEFINED
-2025-12-05 16:26:44 [INFO]: UNDEFINED
-2025-12-05 16:26:45 [INFO]: UNDEFINED
-2025-12-05 16:26:45 [INFO]: UNDEFINED
-2025-12-05 16:26:46 [INFO]: UNDEFINED
-2025-12-05 16:26:46 [INFO]: UNDEFINED
-2025-12-05 16:26:47 [INFO]: UNDEFINED
-2025-12-05 16:26:47 [INFO]: UNDEFINED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:48 [INFO]: FAILED
-2025-12-05 16:26:49 [INFO]: FAILED
-2025-12-05 16:26:49 [INFO]: FAILED
-2025-12-05 16:28:27 [INFO]: Launching browser and navigating to https://login.uat.notified.com/Login
-2025-12-05 16:28:33 [INFO]: UNDEFINED
-2025-12-05 16:29:17 [INFO]: Launching browser and navigating to https://login.notified.com/Login
-2025-12-05 16:29:22 [INFO]: UNDEFINED
-2025-12-05 16:29:23 [INFO]: Launching browser and navigating to https://login.notified.com/Login
-2025-12-05 16:29:28 [INFO]: UNDEFINED
-2025-12-10 12:42:50 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 12:42:55 [INFO]: UNDEFINED
-2025-12-10 12:42:56 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 12:43:00 [INFO]: UNDEFINED
-2025-12-10 12:43:35 [INFO]: Launching browser and navigating to https://login.uat.notified.com/Login
-2025-12-10 12:43:41 [INFO]: UNDEFINED
-2025-12-10 15:31:21 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 15:31:26 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
-2025-12-10 15:31:27 [INFO]: Entering text in element with locator '//input[@id='userName']'
-2025-12-10 15:31:27 [INFO]: FAILED
-2025-12-10 15:31:28 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 15:31:33 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
-2025-12-10 15:31:33 [INFO]: Entering text in element with locator '//input[@id='userName']'
-2025-12-10 15:31:33 [INFO]: FAILED
-2025-12-10 15:34:26 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 15:34:32 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
-2025-12-10 15:34:32 [INFO]: Entering text in element with locator '//input[@id='userName']'
-2025-12-10 15:34:32 [INFO]: Text to enter: 'gopi.krishna'
-2025-12-10 15:34:32 [INFO]: Waiting for element with locator '//button[@type='submit']' to be visible and clickable
-2025-12-10 15:34:34 [INFO]: Waiting for element with locator '//input[@id='password']' to be visible for verification
-2025-12-10 15:35:04 [INFO]: FAILED
-2025-12-10 15:35:08 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 15:35:13 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
-2025-12-10 15:35:13 [INFO]: Entering text in element with locator '//input[@id='userName']'
-2025-12-10 15:35:13 [INFO]: Text to enter: 'gopi.krishna'
-2025-12-10 15:35:13 [INFO]: Waiting for element with locator '//button[@type='submit']' to be visible and clickable
-2025-12-10 15:35:14 [INFO]: Waiting for element with locator '//input[@id='password']' to be visible for verification
-2025-12-10 15:35:44 [INFO]: FAILED
-2025-12-10 15:41:14 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 15:41:20 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
-2025-12-10 15:41:20 [INFO]: Entering text in element with locator '//input[@id='userName']'
-2025-12-10 15:41:20 [INFO]: Text to enter: 'gopi.krishna'
-2025-12-10 15:41:20 [INFO]: Waiting for element with locator '//button[@type='submit']' to be visible and clickable
-2025-12-10 15:41:22 [INFO]: Waiting for element with locator '//input[@id='password']' to be visible for verification
-2025-12-10 15:41:48 [INFO]: FAILED
-2025-12-10 15:41:49 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
-2025-12-10 15:41:50 [INFO]: FAILED
+2026-01-22 11:05:03 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
+2026-01-22 11:05:08 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
+2026-01-22 11:05:08 [INFO]: Entering text in element with locator '//input[@id='userName']'
+2026-01-22 11:05:08 [INFO]: Text to enter: 'IRP_Automation'
+2026-01-22 11:05:09 [INFO]: ✓ Text entered successfully: 'IRP_Automation'
+2026-01-22 11:05:09 [INFO]: Waiting for element with locator '//button[@type='submit']' to be visible and clickable
+2026-01-22 11:05:11 [INFO]: Entering text in element with locator '//input[@id='password']'
+2026-01-22 11:05:11 [INFO]: Text to enter: 'Irportal@2025'
+2026-01-22 11:05:12 [INFO]: ✓ Text entered successfully: 'Irportal@2025'
+2026-01-22 11:05:12 [INFO]: Waiting for element with locator '//button[@class='btn btn-success full login__btn']' to be visible and clickable
+2026-01-22 11:05:13 [INFO]: 🔐 Reading questions and filling appropriate answers...
+2026-01-22 11:05:13 [INFO]: Getting text from element with locator '//div[@id='qnaTable']//div[1]//label'
+2026-01-22 11:05:19 [INFO]: 📖 Question 1: "What is your favorite dish?"
+2026-01-22 11:05:19 [INFO]: Waiting for element with locator '//input[@id='Answer1']' to be visible for verification
+2026-01-22 11:05:19 [INFO]: Entering text in element with locator '//input[@id='Answer1']'
+2026-01-22 11:05:19 [INFO]: Text to enter: 'Dish'
+2026-01-22 11:05:19 [INFO]: ✓ Text entered successfully: 'Dish'
+2026-01-22 11:05:19 [INFO]: ✅ Filled Answer1 with "Dish" for question: "What is your favorite dish?"
+2026-01-22 11:05:19 [INFO]: Getting text from element with locator '//div[@id='qnaTable']//div[2]//label'
+2026-01-22 11:05:19 [INFO]: 📖 Question 2: "Who is your favorite movie star?"
+2026-01-22 11:05:19 [INFO]: Waiting for element with locator '//input[@id='Answer2']' to be visible for verification
+2026-01-22 11:05:19 [INFO]: Entering text in element with locator '//input[@id='Answer2']'
+2026-01-22 11:05:19 [INFO]: Text to enter: 'Star'
+2026-01-22 11:05:19 [INFO]: ✓ Text entered successfully: 'Star'
+2026-01-22 11:05:19 [INFO]: ✅ Filled Answer2 with "Star" for question: "Who is your favorite movie star?"
+2026-01-22 11:05:19 [INFO]: ✅ Filled 2 answer fields out of 2 questions
+2026-01-22 11:05:19 [INFO]: Waiting for element with locator '//span[@class="SQcontinueButtonText"]' to be visible and clickable
+2026-01-22 11:05:19 [INFO]: Waiting for 3000 milliseconds
+2026-01-22 11:05:29 [INFO]: Screenshot saved: test-result/screenshots/after_login_before_navigation_2026-01-22T05-35-22-605Z.png
+2026-01-22 11:05:29 [INFO]: Getting current page URL
+2026-01-22 11:05:29 [INFO]: Waiting for element with locator '//a[contains(@href, 'event') or contains(@href, 'Event')]' to be visible
+2026-01-22 11:05:32 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:05:36 [INFO]: Waiting for element with locator '//button[contains(@onclick, 'event') or contains(@onclick, 'Event')]' to be visible
+2026-01-22 11:05:39 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:05:44 [INFO]: Waiting for element with locator '//div[contains(@class, 'event') or contains(@class, 'Event')]//a' to be visible
+2026-01-22 11:05:47 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:05:50 [INFO]: Waiting for element with locator '//div[contains(@class, 'event') or contains(@class, 'Event')]//button' to be visible
+2026-01-22 11:05:53 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:05:56 [INFO]: Waiting for element with locator '//*[contains(text(), 'Event') or contains(text(), 'event')][contains(@class, 'clickable') or @role='button' or self::button or self::a]' to be visible
+2026-01-22 11:05:59 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:02 [INFO]: Waiting for element with locator '//nav//*[contains(text(), 'Event') or contains(text(), 'IR') or contains(text(), 'Incident')]' to be visible
+2026-01-22 11:06:02 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:05 [INFO]: Waiting for element with locator '//*[@data-*='event' or @data-*='Event']' to be visible
+2026-01-22 11:06:05 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:08 [INFO]: Waiting for element with locator '//button[@au-id='event-mini-card-view-all-btn']' to be visible
+2026-01-22 11:06:11 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:15 [INFO]: Screenshot saved: test-result/screenshots/navigation_failed_current_state_2026-01-22T05-36-14-862Z.png
+2026-01-22 11:06:15 [INFO]: Waiting for 2000 milliseconds
+2026-01-22 11:06:17 [INFO]: Waiting for element with locator '//input[@type='text' and (@placeholder*='search' or @placeholder*='Search' or @placeholder*='filter' or @placeholder*='Filter')]' to be visible
+2026-01-22 11:06:17 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:20 [INFO]: Waiting for element with locator '//input[contains(@class, 'search') or contains(@class, 'filter')]' to be visible
+2026-01-22 11:06:23 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:26 [INFO]: Waiting for element with locator '//input[@id*='search' or @id*='Search' or @id*='filter' or @id*='Filter']' to be visible
+2026-01-22 11:06:26 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:29 [INFO]: Waiting for element with locator '//div[contains(@class, 'search')]//input' to be visible
+2026-01-22 11:06:32 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:35 [INFO]: Waiting for element with locator '*//input[@type='search']' to be visible
+2026-01-22 11:06:36 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:39 [INFO]: Waiting for element with locator '//input[@id='searchField-0.045929722506004356']' to be visible
+2026-01-22 11:06:42 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:52 [INFO]: Screenshot saved: test-result/screenshots/search_failed_current_state_2026-01-22T05-36-51-381Z.png
+2026-01-22 11:06:52 [INFO]: Waiting for element with locator '//button[contains(text(), 'Open') or contains(text(), 'OPEN') or contains(@title, 'Open')]' to be visible
+2026-01-22 11:06:55 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:06:58 [INFO]: Waiting for element with locator '//a[contains(text(), 'Open') or contains(text(), 'OPEN') or contains(@title, 'Open')]' to be visible
+2026-01-22 11:07:01 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:07:04 [INFO]: Waiting for element with locator '//*[@role='button'][contains(text(), 'Open') or contains(text(), 'View') or contains(text(), 'Select')]' to be visible
+2026-01-22 11:07:07 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:07:10 [INFO]: Waiting for element with locator '//button[contains(@class, 'open') or contains(@class, 'view') or contains(@class, 'select')]' to be visible
+2026-01-22 11:07:13 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:07:17 [INFO]: Waiting for element with locator '//*[contains(@onclick, 'open') or contains(@onclick, 'view') or contains(@onclick, 'select')]' to be visible
+2026-01-22 11:07:20 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:07:23 [INFO]: Waiting for element with locator '//button[contains(text(), 'Open')]' to be visible
+2026-01-22 11:07:26 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:07:30 [INFO]: Screenshot saved: test-result/screenshots/open_button_failed_final_state_2026-01-22T05-37-29-609Z.png
+2026-01-22 11:07:30 [INFO]: Waiting for 2000 milliseconds
+2026-01-22 11:07:32 [INFO]: Getting current page URL
+2026-01-22 11:07:33 [INFO]: Screenshot saved: test-result/screenshots/final_navigation_state_2026-01-22T05-37-32-415Z.png
+2026-01-22 11:07:33 [INFO]: PASSED
+2026-01-22 11:13:34 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
+2026-01-22 11:13:38 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
+2026-01-22 11:13:38 [INFO]: Entering text in element with locator '//input[@id='userName']'
+2026-01-22 11:13:38 [INFO]: Text to enter: 'IRP_Automation'
+2026-01-22 11:13:38 [INFO]: ✓ Text entered successfully: 'IRP_Automation'
+2026-01-22 11:13:38 [INFO]: Waiting for element with locator '//button[@type='submit']' to be visible and clickable
+2026-01-22 11:13:38 [INFO]: Entering text in element with locator '//input[@id='password']'
+2026-01-22 11:13:38 [INFO]: Text to enter: 'Irportal@2025'
+2026-01-22 11:13:42 [INFO]: Primary locator failed, attempting fast self-healing...
+2026-01-22 11:13:45 [INFO]: ✓ Self-healed locator: //input[@id='password'] → #password
+2026-01-22 11:13:45 [INFO]: ✓ Text entered using healed locator
+2026-01-22 11:13:45 [INFO]: Waiting for element with locator '//button[@class='btn btn-success full login__btn']' to be visible and clickable
+2026-01-22 11:13:45 [INFO]: 🔐 Reading questions and filling appropriate answers...
+2026-01-22 11:13:45 [INFO]: Getting text from element with locator '//div[@id='qnaTable']//div[1]//label'
+2026-01-22 11:13:49 [INFO]: 📖 Question 1: "What is your favorite vacation city?"
+2026-01-22 11:13:49 [INFO]: Waiting for element with locator '//input[@id='Answer1']' to be visible for verification
+2026-01-22 11:13:49 [INFO]: Entering text in element with locator '//input[@id='Answer1']'
+2026-01-22 11:13:49 [INFO]: Text to enter: 'City'
+2026-01-22 11:13:50 [INFO]: ✓ Text entered successfully: 'City'
+2026-01-22 11:13:50 [INFO]: ✅ Filled Answer1 with "City" for question: "What is your favorite vacation city?"
+2026-01-22 11:13:50 [INFO]: Getting text from element with locator '//div[@id='qnaTable']//div[2]//label'
+2026-01-22 11:13:50 [INFO]: 📖 Question 2: "Who is your favorite sports team?"
+2026-01-22 11:13:50 [INFO]: Waiting for element with locator '//input[@id='Answer2']' to be visible for verification
+2026-01-22 11:13:50 [INFO]: Entering text in element with locator '//input[@id='Answer2']'
+2026-01-22 11:13:50 [INFO]: Text to enter: 'Team'
+2026-01-22 11:13:50 [INFO]: ✓ Text entered successfully: 'Team'
+2026-01-22 11:13:50 [INFO]: ✅ Filled Answer2 with "Team" for question: "Who is your favorite sports team?"
+2026-01-22 11:13:50 [INFO]: ✅ Filled 2 answer fields out of 2 questions
+2026-01-22 11:13:50 [INFO]: Waiting for element with locator '//span[@class="SQcontinueButtonText"]' to be visible and clickable
+2026-01-22 11:13:50 [INFO]: Waiting for 3000 milliseconds
+2026-01-22 11:13:59 [INFO]: Screenshot saved: test-result/screenshots/after_login_before_navigation_2026-01-22T05-43-53-301Z.png
+2026-01-22 11:13:59 [INFO]: Getting current page URL
+2026-01-22 11:13:59 [INFO]: Waiting for element with locator '//a[contains(@href, 'event') or contains(@href, 'Event')]' to be visible
+2026-01-22 11:14:02 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:14:07 [INFO]: Waiting for element with locator '//button[contains(@onclick, 'event') or contains(@onclick, 'Event')]' to be visible
+2026-01-22 11:14:10 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:14:15 [INFO]: Waiting for element with locator '//div[contains(@class, 'event') or contains(@class, 'Event')]//a' to be visible
+2026-01-22 11:14:18 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:14:21 [INFO]: Waiting for element with locator '//div[contains(@class, 'event') or contains(@class, 'Event')]//button' to be visible
+2026-01-22 11:14:24 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:14:27 [INFO]: Waiting for element with locator '//*[contains(text(), 'Event') or contains(text(), 'event')][contains(@class, 'clickable') or @role='button' or self::button or self::a]' to be visible
+2026-01-22 11:14:29 [INFO]: Waiting for element with locator '//*[contains(text(), 'Event') or contains(text(), 'event')][contains(@class, 'clickable') or @role='button' or self::button or self::a]' to be visible and clickable
+2026-01-22 11:14:59 [INFO]: Click failed, attempting fast self-healing...
+2026-01-22 11:15:02 [INFO]: Waiting for element with locator '//nav//*[contains(text(), 'Event') or contains(text(), 'IR') or contains(text(), 'Incident')]' to be visible
+2026-01-22 11:15:02 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:05 [INFO]: Waiting for element with locator '//*[@data-*='event' or @data-*='Event']' to be visible
+2026-01-22 11:15:05 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:08 [INFO]: Waiting for element with locator '//button[@au-id='event-mini-card-view-all-btn']' to be visible
+2026-01-22 11:15:08 [INFO]: Waiting for element with locator '//button[@au-id='event-mini-card-view-all-btn']' to be visible and clickable
+2026-01-22 11:15:08 [INFO]: Waiting for 2000 milliseconds
+2026-01-22 11:15:10 [INFO]: Waiting for element with locator '//input[@type='text' and (@placeholder*='search' or @placeholder*='Search' or @placeholder*='filter' or @placeholder*='Filter')]' to be visible
+2026-01-22 11:15:10 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:13 [INFO]: Waiting for element with locator '//input[contains(@class, 'search') or contains(@class, 'filter')]' to be visible
+2026-01-22 11:15:16 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:20 [INFO]: Waiting for element with locator '//input[@id*='search' or @id*='Search' or @id*='filter' or @id*='Filter']' to be visible
+2026-01-22 11:15:20 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:23 [INFO]: Waiting for element with locator '//div[contains(@class, 'search')]//input' to be visible
+2026-01-22 11:15:26 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:30 [INFO]: Waiting for element with locator '*//input[@type='search']' to be visible
+2026-01-22 11:15:30 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:33 [INFO]: Waiting for element with locator '//input[@id='searchField-0.045929722506004356']' to be visible
+2026-01-22 11:15:36 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:49 [INFO]: Screenshot saved: test-result/screenshots/search_failed_current_state_2026-01-22T05-45-46-073Z.png
+2026-01-22 11:15:49 [INFO]: Waiting for element with locator '//button[contains(text(), 'Open') or contains(text(), 'OPEN') or contains(@title, 'Open')]' to be visible
+2026-01-22 11:15:52 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:15:55 [INFO]: Waiting for element with locator '//a[contains(text(), 'Open') or contains(text(), 'OPEN') or contains(@title, 'Open')]' to be visible
+2026-01-22 11:15:58 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:16:02 [INFO]: Waiting for element with locator '//*[@role='button'][contains(text(), 'Open') or contains(text(), 'View') or contains(text(), 'Select')]' to be visible
+2026-01-22 11:16:05 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:16:08 [INFO]: Waiting for element with locator '//button[contains(@class, 'open') or contains(@class, 'view') or contains(@class, 'select')]' to be visible
+2026-01-22 11:16:11 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:16:15 [INFO]: Waiting for element with locator '//*[contains(@onclick, 'open') or contains(@onclick, 'view') or contains(@onclick, 'select')]' to be visible
+2026-01-22 11:16:18 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:16:21 [INFO]: Waiting for element with locator '//button[contains(text(), 'Open')]' to be visible
+2026-01-22 11:16:24 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:16:30 [INFO]: Screenshot saved: test-result/screenshots/open_button_failed_final_state_2026-01-22T05-46-28-312Z.png
+2026-01-22 11:16:30 [INFO]: Waiting for 2000 milliseconds
+2026-01-22 11:16:32 [INFO]: Getting current page URL
+2026-01-22 11:16:35 [INFO]: Screenshot saved: test-result/screenshots/final_navigation_state_2026-01-22T05-46-32-892Z.png
+2026-01-22 11:16:35 [INFO]: PASSED
+2026-01-22 11:23:04 [INFO]: Launching browser and navigating to https://login.qc.notified.com/Login
+2026-01-22 11:23:09 [INFO]: Waiting for element with locator '//input[@id='userName']' to be visible for verification
+2026-01-22 11:23:09 [INFO]: Entering text in element with locator '//input[@id='userName']'
+2026-01-22 11:23:09 [INFO]: Text to enter: 'IRP_Automation'
+2026-01-22 11:23:09 [INFO]: ✓ Text entered successfully: 'IRP_Automation'
+2026-01-22 11:23:09 [INFO]: Waiting for element with locator '//button[@type='submit']' to be visible and clickable
+2026-01-22 11:23:12 [INFO]: Entering text in element with locator '//input[@id='password']'
+2026-01-22 11:23:12 [INFO]: Text to enter: 'Irportal@2025'
+2026-01-22 11:23:13 [INFO]: ✓ Text entered successfully: 'Irportal@2025'
+2026-01-22 11:23:13 [INFO]: Waiting for element with locator '//button[@class='btn btn-success full login__btn']' to be visible and clickable
+2026-01-22 11:23:13 [INFO]: 🔐 Reading questions and filling appropriate answers...
+2026-01-22 11:23:13 [INFO]: Getting text from element with locator '//div[@id='qnaTable']//div[1]//label'
+2026-01-22 11:23:17 [INFO]: 📖 Question 1: "What is your favorite vacation city?"
+2026-01-22 11:23:17 [INFO]: Waiting for element with locator '//input[@id='Answer1']' to be visible for verification
+2026-01-22 11:23:17 [INFO]: Entering text in element with locator '//input[@id='Answer1']'
+2026-01-22 11:23:17 [INFO]: Text to enter: 'City'
+2026-01-22 11:23:17 [INFO]: ✓ Text entered successfully: 'City'
+2026-01-22 11:23:17 [INFO]: ✅ Filled Answer1 with "City" for question: "What is your favorite vacation city?"
+2026-01-22 11:23:17 [INFO]: Getting text from element with locator '//div[@id='qnaTable']//div[2]//label'
+2026-01-22 11:23:17 [INFO]: 📖 Question 2: "Who is your favorite movie star?"
+2026-01-22 11:23:17 [INFO]: Waiting for element with locator '//input[@id='Answer2']' to be visible for verification
+2026-01-22 11:23:17 [INFO]: Entering text in element with locator '//input[@id='Answer2']'
+2026-01-22 11:23:17 [INFO]: Text to enter: 'Star'
+2026-01-22 11:23:17 [INFO]: ✓ Text entered successfully: 'Star'
+2026-01-22 11:23:17 [INFO]: ✅ Filled Answer2 with "Star" for question: "Who is your favorite movie star?"
+2026-01-22 11:23:17 [INFO]: ✅ Filled 2 answer fields out of 2 questions
+2026-01-22 11:23:17 [INFO]: Waiting for element with locator '//span[@class="SQcontinueButtonText"]' to be visible and clickable
+2026-01-22 11:23:18 [INFO]: Waiting for 3000 milliseconds
+2026-01-22 11:23:26 [INFO]: Screenshot saved: test-results/screenshots/after_login_before_navigation_2026-01-22T05-53-21-054Z.png
+2026-01-22 11:23:26 [INFO]: Getting current page URL
+2026-01-22 11:23:26 [INFO]: Waiting for element with locator '//a[contains(@href, 'event') or contains(@href, 'Event')]' to be visible
+2026-01-22 11:23:29 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:23:34 [INFO]: Waiting for element with locator '//button[contains(@onclick, 'event') or contains(@onclick, 'Event')]' to be visible
+2026-01-22 11:23:37 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:23:41 [INFO]: Waiting for element with locator '//div[contains(@class, 'event') or contains(@class, 'Event')]//a' to be visible
+2026-01-22 11:23:44 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:23:48 [INFO]: Waiting for element with locator '//div[contains(@class, 'event') or contains(@class, 'Event')]//button' to be visible
+2026-01-22 11:23:51 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:23:54 [INFO]: Waiting for element with locator '//*[contains(text(), 'Event') or contains(text(), 'event')][contains(@class, 'clickable') or @role='button' or self::button or self::a]' to be visible
+2026-01-22 11:23:55 [INFO]: Waiting for element with locator '//*[contains(text(), 'Event') or contains(text(), 'event')][contains(@class, 'clickable') or @role='button' or self::button or self::a]' to be visible and clickable
+2026-01-22 11:24:26 [INFO]: Click failed, attempting fast self-healing...
+2026-01-22 11:24:29 [INFO]: Waiting for element with locator '//nav//*[contains(text(), 'Event') or contains(text(), 'IR') or contains(text(), 'Incident')]' to be visible
+2026-01-22 11:24:29 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:24:32 [INFO]: Waiting for element with locator '//*[@data-*='event' or @data-*='Event']' to be visible
+2026-01-22 11:24:32 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:24:35 [INFO]: Waiting for element with locator '//button[@au-id='event-mini-card-view-all-btn']' to be visible
+2026-01-22 11:24:35 [INFO]: Waiting for element with locator '//button[@au-id='event-mini-card-view-all-btn']' to be visible and clickable
+2026-01-22 11:24:36 [INFO]: Waiting for 2000 milliseconds
+2026-01-22 11:24:38 [INFO]: Waiting for element with locator '//input[@type='text' and (@placeholder*='search' or @placeholder*='Search' or @placeholder*='filter' or @placeholder*='Filter')]' to be visible
+2026-01-22 11:24:38 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:24:41 [INFO]: Waiting for element with locator '//input[contains(@class, 'search') or contains(@class, 'filter')]' to be visible
+2026-01-22 11:24:44 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:24:48 [INFO]: Waiting for element with locator '//input[@id*='search' or @id*='Search' or @id*='filter' or @id*='Filter']' to be visible
+2026-01-22 11:24:51 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:24:54 [INFO]: Waiting for element with locator '//div[contains(@class, 'search')]//input' to be visible
+2026-01-22 11:24:57 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:01 [INFO]: Waiting for element with locator '*//input[@type='search']' to be visible
+2026-01-22 11:25:01 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:05 [INFO]: Waiting for element with locator '//input[@id='searchField-0.045929722506004356']' to be visible
+2026-01-22 11:25:08 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:23 [INFO]: Screenshot saved: test-results/screenshots/search_failed_current_state_2026-01-22T05-55-17-967Z.png
+2026-01-22 11:25:23 [INFO]: Waiting for element with locator '//button[contains(text(), 'Open') or contains(text(), 'OPEN') or contains(@title, 'Open')]' to be visible
+2026-01-22 11:25:26 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:30 [INFO]: Waiting for element with locator '//a[contains(text(), 'Open') or contains(text(), 'OPEN') or contains(@title, 'Open')]' to be visible
+2026-01-22 11:25:33 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:38 [INFO]: Waiting for element with locator '//*[@role='button'][contains(text(), 'Open') or contains(text(), 'View') or contains(text(), 'Select')]' to be visible
+2026-01-22 11:25:41 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:44 [INFO]: Waiting for element with locator '//button[contains(@class, 'open') or contains(@class, 'view') or contains(@class, 'select')]' to be visible
+2026-01-22 11:25:47 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:52 [INFO]: Waiting for element with locator '//*[contains(@onclick, 'open') or contains(@onclick, 'view') or contains(@onclick, 'select')]' to be visible
+2026-01-22 11:25:55 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:25:58 [INFO]: Waiting for element with locator '//button[contains(text(), 'Open')]' to be visible
+2026-01-22 11:26:01 [INFO]: Element wait failed, attempting fast self-healing...
+2026-01-22 11:26:12 [INFO]: Screenshot saved: test-results/screenshots/open_button_failed_final_state_2026-01-22T05-56-06-415Z.png
+2026-01-22 11:26:12 [INFO]: Waiting for 2000 milliseconds
+2026-01-22 11:26:14 [INFO]: Getting current page URL
+2026-01-22 11:26:19 [INFO]: Screenshot saved: test-results/screenshots/final_navigation_state_2026-01-22T05-56-14-577Z.png
+2026-01-22 11:26:19 [INFO]: PASSED

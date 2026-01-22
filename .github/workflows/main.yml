@@ -11,7 +11,7 @@ jobs:
     name: Run Tests & Notify
     # Run only if it's a PR comment containing '/bot' OR a manual trigger
     if: (github.event.issue.pull_request && contains(github.event.comment.body, '/bot')) || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Code

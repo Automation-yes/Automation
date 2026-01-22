@@ -1,57 +1,124 @@
 import * as fs from 'fs';
-import archiver from 'archiver';
-const report = require('multiple-cucumber-html-reporter');
+import * as path from 'path';
+import { randomUUID } from 'crypto';
 
-const reportConfig = {
-  jsonDir: 'test-results', // Path to the directory containing the JSON files
-  reportPath: 'test-results/combined-report', // Path to the directory where the report will be saved
-  reportName: 'Playwright Automation Report',
-  pageTitle: 'illum Application',
-  displayDuration: true,
-  metadata: {
-    browser: {
-      name: 'chrome',
-      version: '118',
-    },
-    device: 'gopi - laptop',
-    platform: {
-      name: 'mac',
-      version: '14.0',
-    },
-  },
-  customData: {
-    title: 'Test info',
-    // Replace the label names for every release
-    data: [
-      { label: 'Project', value: 'Custom project' },
-      { label: 'Release', value: '1.2.3' },
-      { label: 'Cycle', value: 'B11221.34321' },
-    ],
-  },
-};
-
-try {
-  report.generate(reportConfig);
-} catch (error) {
-  console.error('Error generating report:', error);
+// Convert Cucumber JSON to Allure and generate report
+async function generateAllureReport() {
+    const cucumberJsonPath = './test-results/cucumber-report.json';
+    const allureResultsDir = './test-results/allure-results';
+    
+    console.log('🔄 Converting Cucumber results to Allure format...');
+    
+    // Ensure allure-results directory exists
+    if (!fs.existsSync(allureResultsDir)) {
+        fs.mkdirSync(allureResultsDir, { recursive: true });
+    }
+    
+    try {
+        // Check if Cucumber JSON exists
+        if (!fs.existsSync(cucumberJsonPath)) {
+            console.error(`❌ Cucumber JSON file not found: ${cucumberJsonPath}`);
+            return;
+        }
+        
+        // Read and convert Cucumber JSON to Allure format
+        const cucumberData = JSON.parse(fs.readFileSync(cucumberJsonPath, 'utf8'));
+        
+        cucumberData.forEach((feature: any, featureIndex: number) => {
+            if (!feature.elements || feature.elements.length === 0) return;
+            
+            feature.elements.forEach((scenario: any, scenarioIndex: number) => {
+                const testUuid = randomUUID();
+                const containerUuid = randomUUID();
+                
+                // Calculate timing and status
+                const startTime = Date.now() - 300000;
+                let totalDuration = 0;
+                let scenarioStatus = 'passed';
+                let errorMessage = '';
+                const allureSteps: any[] = [];
+                
+                // Process steps
+                if (scenario.steps && scenario.steps.length > 0) {
+                    scenario.steps.forEach((step: any, stepIndex: number) => {
+                        const stepDuration = step.result?.duration ? Math.floor(step.result.duration / 1000000) : 1000;
+                        totalDuration += stepDuration;
+                        
+                        const stepStatus = step.result?.status || 'passed';
+                        if (stepStatus === 'failed') {
+                            scenarioStatus = 'failed';
+                            errorMessage = step.result?.error_message || `Step failed: ${step.name}`;
+                        }
+                        
+                        allureSteps.push({
+                            name: step.name || `Step ${stepIndex + 1}`,
+                            status: stepStatus,
+                            stage: 'finished',
+                            start: startTime + (stepIndex * 1000),
+                            stop: startTime + (stepIndex * 1000) + stepDuration
+                        });
+                    });
+                }
+                
+                // Create Allure test result
+                const testResult = {
+                    uuid: testUuid,
+                    name: scenario.name || `Scenario ${scenarioIndex + 1}`,
+                    fullName: `${feature.name || 'Feature'} > ${scenario.name || 'Scenario'}`,
+                    start: startTime,
+                    stop: startTime + totalDuration,
+                    status: scenarioStatus,
+                    statusDetails: scenarioStatus === 'failed' ? {
+                        message: errorMessage,
+                        trace: errorMessage
+                    } : {},
+                    stage: 'finished',
+                    steps: allureSteps,
+                    labels: [
+                        { name: 'suite', value: feature.name || 'Test Suite' },
+                        { name: 'feature', value: feature.name || 'Feature' },
+                        { name: 'story', value: scenario.name || 'Story' }
+                    ]
+                };
+                
+                // Add tags as labels
+                if (scenario.tags && scenario.tags.length > 0) {
+                    scenario.tags.forEach((tag: any) => {
+                        testResult.labels.push({
+                            name: 'tag',
+                            value: tag.name?.replace('@', '') || tag
+                        });
+                    });
+                }
+                
+                // Write Allure files
+                fs.writeFileSync(
+                    path.join(allureResultsDir, `${testUuid}-result.json`),
+                    JSON.stringify(testResult, null, 2)
+                );
+                
+                const container = {
+                    uuid: containerUuid,
+                    name: feature.name || 'Feature Container',
+                    start: startTime,
+                    stop: startTime + totalDuration,
+                    children: [testUuid]
+                };
+                
+                fs.writeFileSync(
+                    path.join(allureResultsDir, `${containerUuid}-container.json`),
+                    JSON.stringify(container, null, 2)
+                );
+            });
+        });
+        
+        console.log('✅ Cucumber results converted to Allure format');
+        console.log('🚀 Use "npm run report" to view the interactive Allure report');
+        
+    } catch (error: any) {
+        console.error('❌ Error generating Allure report:', error.message);
+    }
 }
 
-
-const output = fs.createWriteStream('test-results/combined-report.zip');
-const archive = archiver('zip', { zlib: { level: 9 } });
-
-archive.on('warning', (err) => {
-  if (err.code === 'ENOENT') {
-    console.warn(err);
-  } else {
-    throw err;
-  }
-});
-
-archive.on('error', (err) => {
-  throw err;
-});
-
-archive.pipe(output);
-archive.directory('test-results/combined-report', 'combined-report');
-archive.finalize();
+// Run the conversion
+generateAllureReport();

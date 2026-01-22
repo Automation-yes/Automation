@@ -27,12 +27,12 @@ BeforeAll(async function () {
     console.log('🔧 Setting up API contexts for export tests...');
     
     // Use common page method to setup all API contexts
-    const apiSetup = await commonPage.setupApiContexts(baseUrl);
+    //const apiSetup = await commonPage.setupApiContexts(baseUrl);
     
-    contexts = apiSetup.contexts;
-    contextsInvalidToken = apiSetup.contextsInvalidToken;
-    contextsMissingToken = apiSetup.contextsMissingToken;
-    bearerToken = apiSetup.bearerToken;
+    // contexts = apiSetup.contexts;
+    // contextsInvalidToken = apiSetup.contextsInvalidToken;
+    // contextsMissingToken = apiSetup.contextsMissingToken;
+    // bearerToken = apiSetup.bearerToken;
     
     console.log('✅ All API contexts initialized successfully');
     

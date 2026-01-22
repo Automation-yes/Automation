@@ -1,4 +1,5 @@
 import commonPage from '../pageObject/commonPage';
+import SecurityQuestionsPage from '../pageObject/questions';
 import { userData } from '../testdata/login';
 import { qcEndpoints,uatEndpoints,prodEndpoints } from '../testdata/urls';
 import { ActionHelper } from '../util/actionHelpers/actionHelper';
@@ -13,5 +14,7 @@ export default new class login extends ActionHelper{
     async login() {
         await commonPage.navigateToLoginPage(loginUrl);
         await commonPage.login(username,password);
+       
+        
     }
 };

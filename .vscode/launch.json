@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Cucumber Tests",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+            "args": [
+                "--require-module",
+                "ts-node/register",
+                "--require",
+                "src/test/steps/**/*.steps.ts",
+                "--require",
+                "src/test/hooks/hooks.ts",
+                "src/test/features/**/*.feature"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "skipFiles": ["<node_internals>/**"],
+            "env": {
+                "NODE_ENV": "development"
+            }
+        },
+        {
+            "name": "Debug Single Feature",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+            "args": [
+                "--require-module",
+                "ts-node/register",
+                "--require",
+                "src/test/steps/**/*.steps.ts",
+                "--require",
+                "src/test/hooks/hooks.ts",
+                "${file}"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "skipFiles": ["<node_internals>/**"]
+        }
+    ]
+}

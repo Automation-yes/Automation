@@ -16,6 +16,7 @@ export default defineConfig({
   reporter: [
     ['html'],
     cucumberReporter('json', { outputFile: './test-results/cucumber-report.json' }),
+    cucumberReporter('html', { outputFile: './test-results/cucumber-report.html' }),
   ],
   use: {
     trace: 'on-first-retry',

@@ -1,8 +1,8 @@
 export const userData = new (function () {
-    this.qcUsername = 'gopi.krishna'
-    this.qcPassword = '8660171690@Gk'
-    this.uatUsername = 'gopi.krishna'
-    this.uatPassword = '8660171690@Gk'
+    this.qcUsername = 'IRP_Automation'
+    this.qcPassword = 'Irportal@2025'
+    this.uatUsername = 'IRP_Automation'
+    this.uatPassword = 'Irportal@2026 '
     this.prodUsername = 'gopikrishna.xyz'
     this.prodPassword = '8660171690@Gk'
 });
