@@ -1,4 +1,4 @@
-name: Automation Tests Bot-1
+name: Automation Tests Bot
 # Trigger Update
 
 on:
@@ -100,6 +100,66 @@ jobs:
       - name: Run Tests
         id: tests
         run: npm run test-qc
+
+      - name: Generate Reports
+        if: always()
+        run: |
+          npm install multiple-cucumber-html-reporter
+          npm install archiver
+          npm run posttest
+
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automation-report
+          path: test-results/combined-report.zip
+          retention-days: 30
+
+      - name: Post Test Results to PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const reportPath = 'test-results/cucumber-report.json';
+              if (fs.existsSync(reportPath)) {
+                const results = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+                let passed = 0;
+                let failed = 0;
+                
+                results.forEach(feature => {
+                  if (feature.elements) {
+                    feature.elements.forEach(scenario => {
+                      const isFailed = scenario.steps.some(step => step.result.status === 'failed');
+                      if (isFailed) failed++; else passed++;
+                    });
+                  }
+                });
+                
+                const total = passed + failed;
+                const emoji = failed === 0 ? '✅' : '❌';
+                
+                const body = `### 🎭 Playwright Test Results\n\n` +
+                  `| Total | Passed | Failed |\n` +
+                  `|-------|--------|--------|\n` +
+                  `| ${total} | ${passed} ✅ | ${failed} ❌ |\n\n` +
+                  `**Status:** ${emoji} ${failed === 0 ? 'All Tests Passed' : 'Some Tests Failed'}\n\n` +
+                  `[Download Full Report](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
+                  
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: body
+                });
+              } else {
+                console.log('Report file not found, skipping comment.');
+              }
+            } catch (error) {
+              console.error('Error processing test results:', error);
+            }
 
       - name: Microsoft Teams Notification
         if: always()
