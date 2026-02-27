@@ -25,6 +25,26 @@ jobs:
           # If triggered by comment, checkout the PR code. Otherwise (manual), use default.
           ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
 
+      - name: Set Pending Status on PR
+        if: github.event_name == 'issue_comment'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: pr.head.sha,
+              state: 'pending',
+              target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              description: 'Tests are running...',
+              context: 'Automation Tests'
+            });
+
       - name: Notify Checkout Status
         if: always()
         run: |
@@ -174,6 +194,56 @@ jobs:
             } catch (error) {
               console.error('Error processing test results:', error);
             }
+
+      - name: Update PR Status
+        if: always() && github.event_name == 'issue_comment'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            
+            let state = 'failure';
+            let description = 'Tests failed';
+            
+            try {
+              const reportPath = 'test-results/cucumber-report.json';
+              if (fs.existsSync(reportPath)) {
+                const results = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+                let passed = 0;
+                let failed = 0;
+                results.forEach(feature => {
+                  if (feature.elements) {
+                    feature.elements.forEach(scenario => {
+                      const isFailed = scenario.steps.some(step => step.result.status === 'failed');
+                      if (isFailed) failed++; else passed++;
+                    });
+                  }
+                });
+                if (failed === 0) {
+                  state = 'success';
+                  description = `All ${passed} tests passed`;
+                } else {
+                  description = `${failed} of ${passed + failed} tests failed`;
+                }
+              }
+            } catch (e) {
+              console.error(e);
+            }
+            
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: pr.head.sha,
+              state: state,
+              target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              description: description,
+              context: 'Automation Tests'
+            });
 
       - name: Microsoft Teams Notification
         if: always()
