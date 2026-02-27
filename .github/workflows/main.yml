@@ -106,8 +106,55 @@ jobs:
           # Generate combined HTML report (runs report.ts directly)
           npx ts-node src/test/hooks/report.ts
 
-          # Generate Allure HTML report (npx auto-installs allure-commandline if missing)
-          if (Test-Path "test-results\allure-results") {
+          # Convert Cucumber JSON to Allure results format (inline, branch-independent)
+          $cucumberJson = "test-results\cucumber-report.json"
+          $allureDir = "test-results\allure-results"
+          if (Test-Path $cucumberJson) {
+            if (-not (Test-Path $allureDir)) { New-Item -ItemType Directory -Path $allureDir -Force | Out-Null }
+            $data = Get-Content $cucumberJson -Raw | ConvertFrom-Json
+            $idx = 0
+            foreach ($feature in $data) {
+              if ($feature.elements) {
+                foreach ($scenario in $feature.elements) {
+                  $idx++
+                  $uuid = [guid]::NewGuid().ToString()
+                  $startTime = [long]([DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) - 300000
+                  $status = "passed"
+                  $steps = @()
+                  $stepIdx = 0
+                  foreach ($step in $scenario.steps) {
+                    $stepIdx++
+                    $dur = if ($step.result -and $step.result.duration) { [math]::Floor($step.result.duration / 1000000) } else { 1000 }
+                    $sStat = if ($step.result -and $step.result.status) { $step.result.status } else { "passed" }
+                    if ($sStat -eq "failed") { $status = "failed" }
+                    $steps += @{ name = $step.name; status = $sStat; stage = "finished"; start = $startTime + ($stepIdx * 1000); stop = $startTime + ($stepIdx * 1000) + $dur }
+                  }
+                  $testResult = @{
+                    uuid = $uuid
+                    name = $scenario.name
+                    fullName = "$($feature.name) > $($scenario.name)"
+                    start = $startTime
+                    stop = $startTime + ($stepIdx * 1000) + 1000
+                    status = $status
+                    stage = "finished"
+                    steps = $steps
+                    labels = @(
+                      @{ name = "suite"; value = $feature.name },
+                      @{ name = "feature"; value = $feature.name },
+                      @{ name = "story"; value = $scenario.name }
+                    )
+                  }
+                  $testResult | ConvertTo-Json -Depth 10 | Set-Content "$allureDir\$uuid-result.json"
+                }
+              }
+            }
+            Write-Host "Converted Cucumber JSON to $idx Allure result(s)"
+          } else {
+            Write-Host "No cucumber-report.json found, skipping Allure conversion"
+          }
+
+          # Generate Allure HTML report
+          if (Test-Path $allureDir) {
             npx -y allure-commandline@2.25.0 generate test-results/allure-results --clean -o test-results/allure-report
           } else {
             Write-Host "No allure-results directory found, skipping Allure generate"
