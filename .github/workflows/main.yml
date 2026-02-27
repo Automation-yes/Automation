@@ -6,6 +6,12 @@ on:
     types: [created]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  statuses: write
+
 jobs:
   test:
     name: Run Tests & Notify
