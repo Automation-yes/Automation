@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        shell: bash
+        shell: pwsh
 
     steps:
       - name: Checkout Code
@@ -28,42 +28,19 @@ jobs:
       - name: Notify Checkout Status
         if: always()
         run: |
-          OUTCOME="${{ steps.checkout.outcome }}"
-          ICON="✅"
-          if [ "$OUTCOME" != "success" ]; then ICON="❌"; fi
-          curl -X POST -H "Content-Type: application/json" -d '{
-            "type": "message",
-            "attachments": [{ "contentType": "application/vnd.microsoft.card.adaptive", "content": { "$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.2", "body": [{ "type": "TextBlock", "text": "'"$ICON"' Checkout Code: '"$OUTCOME"'", "weight": "Bolder" }] } }]
-          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+          $OUTCOME = "${{ steps.checkout.outcome }}"
+          $ICON = if ($OUTCOME -ne "success") { "❌" } else { "✅" }
+          $body = @"
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Checkout Code: $OUTCOME","weight":"Bolder"}]}}]}
+          "@
+          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json" -Body $body
 
       - name: Notify Test Start
         run: |
-          curl -X POST -H "Content-Type: application/json" -d '{
-            "type": "message",
-            "attachments": [
-              {
-                "contentType": "application/vnd.microsoft.card.adaptive",
-                "content": {
-                  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                  "type": "AdaptiveCard",
-                  "version": "1.2",
-                  "body": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Test Run Started",
-                      "weight": "Bolder",
-                      "size": "Medium"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": "[Click here to view workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
-                      "wrap": true
-                    }
-                  ]
-                }
-              }
-            ]
-          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+          $body = @"
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"Test Run Started","weight":"Bolder","size":"Medium"},{"type":"TextBlock","text":"[Click here to view workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}]}}]}
+          "@
+          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json" -Body $body
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -78,13 +55,12 @@ jobs:
       - name: Notify Dependencies Status
         if: always()
         run: |
-          OUTCOME="${{ steps.dependencies.outcome }}"
-          ICON="✅"
-          if [ "$OUTCOME" != "success" ]; then ICON="❌"; fi
-          curl -X POST -H "Content-Type: application/json" -d '{
-            "type": "message",
-            "attachments": [{ "contentType": "application/vnd.microsoft.card.adaptive", "content": { "$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.2", "body": [{ "type": "TextBlock", "text": "'"$ICON"' Install Dependencies: '"$OUTCOME"'", "weight": "Bolder" }] } }]
-          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+          $OUTCOME = "${{ steps.dependencies.outcome }}"
+          $ICON = if ($OUTCOME -ne "success") { "❌" } else { "✅" }
+          $body = @"
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Install Dependencies: $OUTCOME","weight":"Bolder"}]}}]}
+          "@
+          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json" -Body $body
 
       - name: Install Playwright Browsers
         id: browsers
@@ -93,13 +69,12 @@ jobs:
       - name: Notify Browsers Status
         if: always()
         run: |
-          OUTCOME="${{ steps.browsers.outcome }}"
-          ICON="✅"
-          if [ "$OUTCOME" != "success" ]; then ICON="❌"; fi
-          curl -X POST -H "Content-Type: application/json" -d '{
-            "type": "message",
-            "attachments": [{ "contentType": "application/vnd.microsoft.card.adaptive", "content": { "$schema": "http://adaptivecards.io/schemas/adaptive-card.json", "type": "AdaptiveCard", "version": "1.2", "body": [{ "type": "TextBlock", "text": "'"$ICON"' Install Browsers: '"$OUTCOME"'", "weight": "Bolder" }] } }]
-          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+          $OUTCOME = "${{ steps.browsers.outcome }}"
+          $ICON = if ($OUTCOME -ne "success") { "❌" } else { "✅" }
+          $body = @"
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Install Browsers: $OUTCOME","weight":"Bolder"}]}}]}
+          "@
+          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json" -Body $body
 
       - name: Run Tests
         id: tests
@@ -168,29 +143,9 @@ jobs:
       - name: Microsoft Teams Notification
         if: always()
         run: |
-          STATUS="${{ job.status }}"
-          ICON="✅"
-          if [ "$STATUS" != "success" ]; then ICON="❌"; fi
-          curl -X POST -H "Content-Type: application/json" -d '{
-            "type": "message",
-            "attachments": [
-              {
-                "contentType": "application/vnd.microsoft.card.adaptive",
-                "content": {
-                  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                  "type": "AdaptiveCard",
-                  "version": "1.2",
-                  "body": [
-                    {
-                      "type": "TextBlock",
-                      "text": "Test Run Completed",
-                      "weight": "Bolder",
-                      "size": "Medium"
-                    },
-                    {
-                      "type": "TextBlock",
-                  ]
-                }
-              }
-            ]
-          }' "${{ secrets.TEAMS_WEBHOOK_URL }}"
+          $STATUS = "${{ job.status }}"
+          $ICON = if ($STATUS -ne "success") { "❌" } else { "✅" }
+          $body = @"
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"Test Run Completed","weight":"Bolder","size":"Medium"},{"type":"TextBlock","text":"$ICON Status: $STATUS","wrap":true},{"type":"TextBlock","text":"[View Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}]}}]}
+          "@
+          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json" -Body $body
