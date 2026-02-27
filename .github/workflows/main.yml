@@ -45,10 +45,27 @@ jobs:
           Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+        id: setup_node
+        run: |
+          $nodeVer = $null
+          try { $nodeVer = node --version 2>$null } catch {}
+          if ($nodeVer) {
+            Write-Host "Node.js already installed: $nodeVer"
+          } else {
+            Write-Host "Node.js not found. Please install Node.js 20 on this self-hosted runner."
+            exit 1
+          }
+
+      - name: Notify Setup Node Status
+        if: always()
+        run: |
+          $OUTCOME = "${{ steps.setup_node.outcome }}"
+          if ($OUTCOME -ne "success") { $ICON = "FAILED" } else { $ICON = "PASSED" }
+          $body = @"
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON - Setup Node.js: $OUTCOME","weight":"Bolder"}]}}]}
+          "@
+          $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
+          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
 
       - name: Install Dependencies
         id: dependencies
