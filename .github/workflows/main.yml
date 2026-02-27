@@ -106,81 +106,6 @@ jobs:
           # Generate combined HTML report (runs report.ts directly)
           npx ts-node src/test/hooks/report.ts
 
-          # Install portable Java for Allure CLI (if not already present)
-          $javaDir = "$env:RUNNER_TOOL_CACHE\java-jre"
-          if (-not (Test-Path "$javaDir\bin\java.exe")) {
-            Write-Host "Installing portable JRE for Allure..."
-            $jreUrl = "https://aka.ms/download-jdk/microsoft-jdk-21.0.6-windows-x64.zip"
-            $zipPath = "$env:TEMP\java-jre.zip"
-            Invoke-WebRequest -Uri $jreUrl -OutFile $zipPath -UseBasicParsing
-            Expand-Archive -Path $zipPath -DestinationPath "$env:TEMP\java-extract" -Force
-            $extractedDir = Get-ChildItem "$env:TEMP\java-extract" -Directory | Select-Object -First 1
-            if (Test-Path $javaDir) { Remove-Item $javaDir -Recurse -Force }
-            Move-Item $extractedDir.FullName $javaDir
-            Remove-Item $zipPath -Force
-            Remove-Item "$env:TEMP\java-extract" -Recurse -Force -ErrorAction SilentlyContinue
-            Write-Host "JRE installed to $javaDir"
-          } else {
-            Write-Host "JRE already present at $javaDir"
-          }
-          $env:JAVA_HOME = $javaDir
-          $env:PATH = "$javaDir\bin;$env:PATH"
-
-          # Convert Cucumber JSON to Allure results format (inline, branch-independent)
-          $cucumberJson = "test-results\cucumber-report.json"
-          $allureResultsDir = "test-results\allure-results"
-          if (Test-Path $cucumberJson) {
-            if (-not (Test-Path $allureResultsDir)) { New-Item -ItemType Directory -Path $allureResultsDir -Force | Out-Null }
-            $data = Get-Content $cucumberJson -Raw | ConvertFrom-Json
-            $idx = 0
-            foreach ($feature in $data) {
-              if ($feature.elements) {
-                foreach ($scenario in $feature.elements) {
-                  $idx++
-                  $uuid = [guid]::NewGuid().ToString()
-                  $startTime = [long]([DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()) - 300000
-                  $status = "passed"
-                  $steps = @()
-                  $stepIdx = 0
-                  foreach ($step in $scenario.steps) {
-                    $stepIdx++
-                    $dur = if ($step.result -and $step.result.duration) { [math]::Floor($step.result.duration / 1000000) } else { 1000 }
-                    $sStat = if ($step.result -and $step.result.status) { $step.result.status } else { "passed" }
-                    if ($sStat -eq "failed") { $status = "failed" }
-                    $steps += @{ name = $step.name; status = $sStat; stage = "finished"; start = $startTime + ($stepIdx * 1000); stop = $startTime + ($stepIdx * 1000) + $dur }
-                  }
-                  $testResult = @{
-                    uuid = $uuid
-                    name = $scenario.name
-                    fullName = "$($feature.name) > $($scenario.name)"
-                    start = $startTime
-                    stop = $startTime + ($stepIdx * 1000) + 1000
-                    status = $status
-                    stage = "finished"
-                    steps = $steps
-                    labels = @(
-                      @{ name = "suite"; value = $feature.name },
-                      @{ name = "feature"; value = $feature.name },
-                      @{ name = "story"; value = $scenario.name }
-                    )
-                  }
-                  $testResult | ConvertTo-Json -Depth 10 | Set-Content "$allureResultsDir\$uuid-result.json"
-                }
-              }
-            }
-            Write-Host "Converted Cucumber JSON to $idx Allure result(s)"
-          } else {
-            Write-Host "No cucumber-report.json found, skipping Allure conversion"
-          }
-
-          # Generate Allure HTML report
-          if (Test-Path $allureResultsDir) {
-            npx -y allure-commandline@2.25.0 generate test-results/allure-results --clean -o test-results/allure-report
-            Write-Host "Allure HTML report generated"
-          } else {
-            Write-Host "No allure-results directory found, skipping Allure generate"
-          }
-
           if (Test-Path "test-results") {
             Compress-Archive -Path "test-results\*" -DestinationPath "test-results\combined-report.zip" -Force
             Write-Host "Created test-results\combined-report.zip"
@@ -188,17 +113,13 @@ jobs:
             Write-Host "No test-results directory found"
           }
 
-      # ─── DEPLOY REPORTS TO GITHUB PAGES ───
-      - name: Deploy Reports to GitHub Pages
-        id: deploy_allure
+      # ─── DEPLOY REPORT TO GITHUB PAGES ───
+      - name: Deploy Report to GitHub Pages
+        id: deploy_report
         if: always()
         run: |
           $combinedDir = "test-results\combined-report"
-          $allureDir = "test-results\allure-report"
-          $hasCombined = Test-Path $combinedDir
-          $hasAllure = Test-Path $allureDir
-
-          if ($hasCombined -or $hasAllure) {
+          if (Test-Path $combinedDir) {
             $runId = "${{ github.run_number }}"
 
             # Configure git
@@ -219,60 +140,38 @@ jobs:
               Set-Location ..
             }
 
-            # Deploy combined-report (Cucumber HTML)
-            if ($hasCombined) {
-              $target = "gh-pages-dir\run-$runId\cucumber"
-              New-Item -ItemType Directory -Path $target -Force | Out-Null
-              Copy-Item -Path "$combinedDir\*" -Destination $target -Recurse -Force
-              # Also copy to latest/cucumber
-              $latestCucumber = "gh-pages-dir\latest\cucumber"
-              if (Test-Path $latestCucumber) { Remove-Item $latestCucumber -Recurse -Force }
-              New-Item -ItemType Directory -Path $latestCucumber -Force | Out-Null
-              Copy-Item -Path "$combinedDir\*" -Destination $latestCucumber -Recurse -Force
-              Write-Host "Deployed Cucumber HTML report"
-            }
+            # Deploy Cucumber HTML report
+            $target = "gh-pages-dir\run-$runId"
+            New-Item -ItemType Directory -Path $target -Force | Out-Null
+            Copy-Item -Path "$combinedDir\*" -Destination $target -Recurse -Force
+            # Also copy to latest
+            $latestDir = "gh-pages-dir\latest"
+            if (Test-Path $latestDir) { Remove-Item $latestDir -Recurse -Force }
+            New-Item -ItemType Directory -Path $latestDir -Force | Out-Null
+            Copy-Item -Path "$combinedDir\*" -Destination $latestDir -Recurse -Force
+            Write-Host "Deployed Cucumber HTML report"
 
-            # Deploy allure-report (Allure HTML)
-            if ($hasAllure) {
-              $target = "gh-pages-dir\run-$runId\allure"
-              New-Item -ItemType Directory -Path $target -Force | Out-Null
-              Copy-Item -Path "$allureDir\*" -Destination $target -Recurse -Force
-              # Also copy to latest/allure
-              $latestAllure = "gh-pages-dir\latest\allure"
-              if (Test-Path $latestAllure) { Remove-Item $latestAllure -Recurse -Force }
-              New-Item -ItemType Directory -Path $latestAllure -Force | Out-Null
-              Copy-Item -Path "$allureDir\*" -Destination $latestAllure -Recurse -Force
-              Write-Host "Deployed Allure HTML report"
-            }
-
-            # Create root index.html with links to both reports
+            # Create root index.html
             $baseUrl = "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
-            $indexContent = '<!DOCTYPE html><html><head><title>Test Reports</title><style>body{font-family:Arial,sans-serif;max-width:600px;margin:60px auto;text-align:center}a{display:block;margin:20px;padding:15px;background:#0366d6;color:white;text-decoration:none;border-radius:8px;font-size:18px}a:hover{background:#0256b9}</style></head><body><h1>Test Reports</h1><a href="latest/cucumber/index.html">Cucumber HTML Report (Latest)</a><a href="latest/allure/index.html">Allure Report (Latest)</a><p style="margin-top:40px;color:#666">Run #' + $runId + '</p></body></html>'
+            $indexContent = '<!DOCTYPE html><html><head><title>Test Reports</title><style>body{font-family:Arial,sans-serif;max-width:600px;margin:60px auto;text-align:center}a{display:block;margin:20px;padding:15px;background:#0366d6;color:white;text-decoration:none;border-radius:8px;font-size:18px}a:hover{background:#0256b9}</style></head><body><h1>Test Reports</h1><a href="latest/index.html">Latest Test Report</a><a href="run-' + $runId + '/index.html">Run #' + $runId + ' Report</a></body></html>'
             [System.IO.File]::WriteAllText("$PWD\gh-pages-dir\index.html", $indexContent)
 
             # Commit and push
             Set-Location gh-pages-dir
             git add -A
-            git commit -m "Test Reports - Run #$runId" --allow-empty
+            git commit -m "Test Report - Run #$runId" --allow-empty
             git push origin HEAD:gh-pages --force
             Set-Location ..
             git worktree remove gh-pages-dir --force 2>$null
 
-            $CUCUMBER_URL = "$baseUrl/run-$runId/cucumber/index.html"
-            $ALLURE_URL = "$baseUrl/run-$runId/allure/index.html"
-            $REPORT_LATEST = "$baseUrl/latest/cucumber/index.html"
-            $ALLURE_LATEST = "$baseUrl/latest/allure/index.html"
-            Write-Host "Cucumber Report: $CUCUMBER_URL"
-            Write-Host "Allure Report: $ALLURE_URL"
-            echo "ALLURE_URL=$ALLURE_URL" >> $env:GITHUB_ENV
-            echo "ALLURE_LATEST=$ALLURE_LATEST" >> $env:GITHUB_ENV
-            echo "CUCUMBER_URL=$CUCUMBER_URL" >> $env:GITHUB_ENV
+            $REPORT_URL = "$baseUrl/run-$runId/index.html"
+            $REPORT_LATEST = "$baseUrl/latest/index.html"
+            Write-Host "Report: $REPORT_URL"
+            echo "REPORT_URL=$REPORT_URL" >> $env:GITHUB_ENV
             echo "REPORT_LATEST=$REPORT_LATEST" >> $env:GITHUB_ENV
           } else {
-            Write-Host "No reports found to deploy"
-            echo "ALLURE_URL=" >> $env:GITHUB_ENV
-            echo "ALLURE_LATEST=" >> $env:GITHUB_ENV
-            echo "CUCUMBER_URL=" >> $env:GITHUB_ENV
+            Write-Host "No report found to deploy"
+            echo "REPORT_URL=" >> $env:GITHUB_ENV
             echo "REPORT_LATEST=" >> $env:GITHUB_ENV
           }
 
@@ -301,7 +200,7 @@ jobs:
                 { name: 'Install Browsers', status: '${{ steps.browsers.outcome }}' },
                 { name: 'Run Tests', status: '${{ steps.tests.outcome }}' },
                 { name: 'Generate Reports', status: '${{ steps.reports.outcome }}' },
-                { name: 'Deploy Report', status: '${{ steps.deploy_allure.outcome }}' },
+                { name: 'Deploy Report', status: '${{ steps.deploy_report.outcome }}' },
               ];
 
               let pipelineTable = `| Step | Status |\n|------|--------|\n`;
@@ -356,18 +255,18 @@ jobs:
 
               const jobStatus = '${{ job.status }}';
               const overallIcon = jobStatus === 'success' ? '✅' : '❌';
-              const allureUrl = '${{ env.ALLURE_URL }}' || '';
-              const allureLatest = '${{ env.ALLURE_LATEST }}' || '';
+              const reportUrl = '${{ env.REPORT_URL }}' || '';
+              const reportLatest = '${{ env.REPORT_LATEST }}' || '';
 
               let linksSection = `\n### 📎 Links\n\n` +
                 `- [📄 Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n` +
                 `- [📦 Download Report Artifact](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n`;
 
-              if (allureUrl) {
-                linksSection += `- [📊 Test Report (This Run)](${allureUrl})\n`;
+              if (reportUrl) {
+                linksSection += `- [📊 Test Report (This Run)](${reportUrl})\n`;
               }
-              if (allureLatest) {
-                linksSection += `- [📊 Test Report (Latest)](${allureLatest})\n`;
+              if (reportLatest) {
+                linksSection += `- [📊 Test Report (Latest)](${reportLatest})\n`;
               }
 
               const body = `## 🤖 Automation Bot Report\n\n` +
@@ -449,7 +348,7 @@ jobs:
           $BROWSERS = "${{ steps.browsers.outcome }}"
           $TESTS = "${{ steps.tests.outcome }}"
           $REPORTS = "${{ steps.reports.outcome }}"
-          $ALLURE_DEPLOY = "${{ steps.deploy_allure.outcome }}"
+          $REPORT_DEPLOY = "${{ steps.deploy_report.outcome }}"
 
           function Get-Icon($s) {
             if ($s -eq "success") { return "\u2705" }
@@ -464,19 +363,19 @@ jobs:
           $iBrowsers = Get-Icon $BROWSERS
           $iTests = Get-Icon $TESTS
           $iReports = Get-Icon $REPORTS
-          $iAllure = Get-Icon $ALLURE_DEPLOY
+          $iDeploy = Get-Icon $REPORT_DEPLOY
 
           if ($STATUS -eq "success") { $headerIcon = "\u2705"; $headerColor = "Good" }
           else { $headerIcon = "\u274C"; $headerColor = "Attention" }
 
-          $ALLURE_URL = "$env:ALLURE_URL"
-          $allureBlock = ""
-          if ($ALLURE_URL -ne "") {
-            $allureBlock = ",{`"type`":`"TextBlock`",`"text`":`"\uD83D\uDCCA [View Test Report]($ALLURE_URL)`",`"wrap`":true}"
+          $REPORT_URL = "$env:REPORT_URL"
+          $reportBlock = ""
+          if ($REPORT_URL -ne "") {
+            $reportBlock = ",{`"type`":`"TextBlock`",`"text`":`"\uD83D\uDCCA [View Test Report]($REPORT_URL)`",`"wrap`":true}"
           }
 
           $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$headerIcon Test Run #${{ github.run_number }} Complete","weight":"Bolder","size":"Medium","color":"$headerColor"},{"type":"FactSet","facts":[{"title":"Overall","value":"$STATUS"},{"title":"Checkout","value":"$iCheckout $CHECKOUT"},{"title":"Node.js","value":"$iNode $NODE"},{"title":"Dependencies","value":"$iDeps $DEPS"},{"title":"Browsers","value":"$iBrowsers $BROWSERS"},{"title":"Tests","value":"$iTests $TESTS"},{"title":"Reports","value":"$iReports $REPORTS"},{"title":"Allure Deploy","value":"$iAllure $ALLURE_DEPLOY"}]},{"type":"TextBlock","text":"\uD83D\uDD17 [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}$allureBlock]}}]}
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$headerIcon Test Run #${{ github.run_number }} Complete","weight":"Bolder","size":"Medium","color":"$headerColor"},{"type":"FactSet","facts":[{"title":"Overall","value":"$STATUS"},{"title":"Checkout","value":"$iCheckout $CHECKOUT"},{"title":"Node.js","value":"$iNode $NODE"},{"title":"Dependencies","value":"$iDeps $DEPS"},{"title":"Browsers","value":"$iBrowsers $BROWSERS"},{"title":"Tests","value":"$iTests $TESTS"},{"title":"Reports","value":"$iReports $REPORTS"},{"title":"Deploy Report","value":"$iDeploy $REPORT_DEPLOY"}]},{"type":"TextBlock","text":"\uD83D\uDD17 [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}$reportBlock]}}]}
           "@
           $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
           Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
