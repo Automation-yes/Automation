@@ -127,7 +127,7 @@ jobs:
         id: tests
         run: |
           $env:HEADLESS = "true"
-          npx cucumber-js test
+          npx cucumber-js test --force-exit
           Write-Host "Tests completed, exiting step."
         timeout-minutes: 15
 
