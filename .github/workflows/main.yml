@@ -121,20 +121,14 @@ jobs:
         id: tests
         run: |
           $env:HEADLESS = "true"
-          $proc = Start-Process -FilePath "npx" -ArgumentList "cucumber-js test" -NoNewWindow -PassThru
-          $proc | Wait-Process -Timeout 600
-          if (-not $proc.HasExited) {
-            $proc | Stop-Process -Force
-            exit 1
-          }
-          exit $proc.ExitCode
+          npx cucumber-js test
+          Write-Host "Tests completed, exiting step."
         timeout-minutes: 15
 
       - name: Kill Orphan Browsers
         if: always()
         run: |
           Get-Process -Name "chrome","chromium","msedge","firefox" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
-          Get-Process -Name "node" -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $PID } | Stop-Process -Force -ErrorAction SilentlyContinue
 
       - name: Notify Tests Status
         if: always()
@@ -150,9 +144,14 @@ jobs:
       - name: Generate Reports
         if: always()
         run: |
-          npm install multiple-cucumber-html-reporter
-          npm install archiver
           npm run posttest
+          # Zip all test-results into combined-report.zip
+          if (Test-Path "test-results") {
+            Compress-Archive -Path "test-results\*" -DestinationPath "test-results\combined-report.zip" -Force
+            Write-Host "Created test-results\combined-report.zip"
+          } else {
+            Write-Host "No test-results directory found"
+          }
 
       - name: Upload Test Report
         if: always()
