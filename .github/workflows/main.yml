@@ -7,10 +7,12 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
   pull-requests: write
   statuses: write
+  pages: write
+  id-token: write
 
 jobs:
   test:
@@ -24,13 +26,14 @@ jobs:
         shell: powershell
 
     steps:
+      # ─── CHECKOUT ───
       - name: Checkout Code
         id: checkout
         uses: actions/checkout@v4
         with:
-          # If triggered by comment, checkout the PR code. Otherwise (manual), use default.
           ref: ${{ github.event_name == 'issue_comment' && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
 
+      # ─── PR PENDING STATUS ───
       - name: Set Pending Status on PR
         if: github.event_name == 'issue_comment'
         uses: actions/github-script@v7
@@ -51,25 +54,16 @@ jobs:
               context: 'Automation Tests'
             });
 
-      - name: Notify Checkout Status
-        if: always()
+      # ─── TEAMS: START CARD ───
+      - name: Teams - Test Run Started
         run: |
-          $OUTCOME = "${{ steps.checkout.outcome }}"
-          if ($OUTCOME -ne "success") { $ICON = "\u274C" } else { $ICON = "\u2705" }
           $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Checkout Code: $OUTCOME","weight":"Bolder"}]}}]}
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"\u25B6\uFE0F Automation Test Run Started","weight":"Bolder","size":"Medium","color":"Accent"},{"type":"FactSet","facts":[{"title":"Trigger","value":"${{ github.event_name }}"},{"title":"Run","value":"#${{ github.run_number }}"}]},{"type":"TextBlock","text":"\uD83D\uDD17 [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}]}}]}
           "@
           $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
           Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
 
-      - name: Notify Test Start
-        run: |
-          $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"\u25B6\uFE0F Test Run Started","weight":"Bolder","size":"Medium"},{"type":"TextBlock","text":"[Click here to view workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}]}}]}
-          "@
-          $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
-          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
-
+      # ─── SETUP ───
       - name: Setup Node.js
         id: setup_node
         run: |
@@ -82,47 +76,15 @@ jobs:
             exit 1
           }
 
-      - name: Notify Setup Node Status
-        if: always()
-        run: |
-          $OUTCOME = "${{ steps.setup_node.outcome }}"
-          if ($OUTCOME -ne "success") { $ICON = "\u274C" } else { $ICON = "\u2705" }
-          $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Setup Node.js: $OUTCOME","weight":"Bolder"}]}}]}
-          "@
-          $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
-          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
-
       - name: Install Dependencies
         id: dependencies
         run: npm ci
-
-      - name: Notify Dependencies Status
-        if: always()
-        run: |
-          $OUTCOME = "${{ steps.dependencies.outcome }}"
-          if ($OUTCOME -ne "success") { $ICON = "\u274C" } else { $ICON = "\u2705" }
-          $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Install Dependencies: $OUTCOME","weight":"Bolder"}]}}]}
-          "@
-          $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
-          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
 
       - name: Install Playwright Browsers
         id: browsers
         run: npx playwright install --with-deps
 
-      - name: Notify Browsers Status
-        if: always()
-        run: |
-          $OUTCOME = "${{ steps.browsers.outcome }}"
-          if ($OUTCOME -ne "success") { $ICON = "\u274C" } else { $ICON = "\u2705" }
-          $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Install Browsers: $OUTCOME","weight":"Bolder"}]}}]}
-          "@
-          $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
-          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
-
+      # ─── RUN TESTS ───
       - name: Run Tests
         id: tests
         run: |
@@ -136,22 +98,13 @@ jobs:
         run: |
           Get-Process -Name "chrome","chromium","msedge","firefox" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 
-      - name: Notify Tests Status
-        if: always()
-        run: |
-          $OUTCOME = "${{ steps.tests.outcome }}"
-          if ($OUTCOME -ne "success") { $ICON = "\u274C" } else { $ICON = "\u2705" }
-          $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$ICON Run Tests: $OUTCOME","weight":"Bolder"}]}}]}
-          "@
-          $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
-          Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
-
+      # ─── GENERATE REPORTS ───
       - name: Generate Reports
+        id: reports
         if: always()
         run: |
           npm run posttest
-          # Zip all test-results into combined-report.zip
+          npm run report:generate
           if (Test-Path "test-results") {
             Compress-Archive -Path "test-results\*" -DestinationPath "test-results\combined-report.zip" -Force
             Write-Host "Created test-results\combined-report.zip"
@@ -159,6 +112,72 @@ jobs:
             Write-Host "No test-results directory found"
           }
 
+      # ─── DEPLOY ALLURE TO GITHUB PAGES ───
+      - name: Deploy Allure Report to GitHub Pages
+        id: deploy_allure
+        if: always()
+        run: |
+          $allureDir = "test-results\allure-report"
+          if (Test-Path $allureDir) {
+            $runId = "${{ github.run_number }}"
+            $targetDir = "run-$runId"
+
+            # Configure git
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            # Check if gh-pages exists
+            $ghPagesBranch = git ls-remote --heads origin gh-pages 2>&1
+            if ($ghPagesBranch -match "gh-pages") {
+              git fetch origin gh-pages
+              git worktree add gh-pages-dir origin/gh-pages
+            } else {
+              # Create orphan branch
+              New-Item -ItemType Directory -Path "gh-pages-dir" -Force | Out-Null
+              Set-Location gh-pages-dir
+              git init
+              git checkout --orphan gh-pages
+              git remote add origin "${{ github.server_url }}/${{ github.repository }}.git"
+              Set-Location ..
+            }
+
+            # Copy allure report to run-specific folder
+            if (-not (Test-Path "gh-pages-dir\$targetDir")) {
+              New-Item -ItemType Directory -Path "gh-pages-dir\$targetDir" -Force | Out-Null
+            }
+            Copy-Item -Path "$allureDir\*" -Destination "gh-pages-dir\$targetDir" -Recurse -Force
+
+            # Copy to 'latest' folder
+            if (Test-Path "gh-pages-dir\latest") {
+              Remove-Item "gh-pages-dir\latest" -Recurse -Force
+            }
+            New-Item -ItemType Directory -Path "gh-pages-dir\latest" -Force | Out-Null
+            Copy-Item -Path "$allureDir\*" -Destination "gh-pages-dir\latest" -Recurse -Force
+
+            # Create root index.html redirecting to latest
+            $indexHtml = '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=latest/index.html"></head><body><a href="latest/index.html">Go to Latest Allure Report</a></body></html>'
+            Set-Content -Path "gh-pages-dir\index.html" -Value $indexHtml
+
+            # Commit and push
+            Set-Location gh-pages-dir
+            git add -A
+            git commit -m "Allure Report - Run #$runId" --allow-empty
+            git push origin HEAD:gh-pages --force
+            Set-Location ..
+            git worktree remove gh-pages-dir --force 2>$null
+
+            $ALLURE_URL = "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/run-$runId/index.html"
+            $ALLURE_LATEST = "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/latest/index.html"
+            Write-Host "Allure Report URL: $ALLURE_URL"
+            echo "ALLURE_URL=$ALLURE_URL" >> $env:GITHUB_ENV
+            echo "ALLURE_LATEST=$ALLURE_LATEST" >> $env:GITHUB_ENV
+          } else {
+            Write-Host "No allure-report directory found, skipping deployment"
+            echo "ALLURE_URL=" >> $env:GITHUB_ENV
+            echo "ALLURE_LATEST=" >> $env:GITHUB_ENV
+          }
+
+      # ─── UPLOAD ARTIFACT ───
       - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v4
@@ -167,6 +186,7 @@ jobs:
           path: test-results/combined-report.zip
           retention-days: 30
 
+      # ─── POST PR COMMENT ───
       - name: Post Test Results to PR
         if: always() && github.event_name == 'issue_comment'
         uses: actions/github-script@v7
@@ -174,7 +194,6 @@ jobs:
           script: |
             const fs = require('fs');
             try {
-              // Step statuses
               const icon = (s) => s === 'success' ? '✅' : s === 'failure' ? '❌' : s === 'cancelled' ? '⚠️' : '⏭️';
               const steps = [
                 { name: 'Checkout Code', status: '${{ steps.checkout.outcome }}' },
@@ -182,6 +201,8 @@ jobs:
                 { name: 'Install Dependencies', status: '${{ steps.dependencies.outcome }}' },
                 { name: 'Install Browsers', status: '${{ steps.browsers.outcome }}' },
                 { name: 'Run Tests', status: '${{ steps.tests.outcome }}' },
+                { name: 'Generate Reports', status: '${{ steps.reports.outcome }}' },
+                { name: 'Deploy Allure', status: '${{ steps.deploy_allure.outcome }}' },
               ];
 
               let pipelineTable = `| Step | Status |\n|------|--------|\n`;
@@ -189,7 +210,6 @@ jobs:
                 pipelineTable += `| ${s.name} | ${icon(s.status)} ${s.status} |\n`;
               });
 
-              // Test results
               let testSection = '';
               const reportPath = 'test-results/cucumber-report.json';
               if (fs.existsSync(reportPath)) {
@@ -235,18 +255,28 @@ jobs:
                 testSection = `\n> ⚠️ No test report found (test-results/cucumber-report.json missing)\n`;
               }
 
-              // Overall status
               const jobStatus = '${{ job.status }}';
               const overallIcon = jobStatus === 'success' ? '✅' : '❌';
+              const allureUrl = process.env.ALLURE_URL || '';
+              const allureLatest = process.env.ALLURE_LATEST || '';
+
+              let linksSection = `\n### 📎 Links\n\n` +
+                `- [📄 Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n` +
+                `- [📦 Download Report Artifact](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n`;
+
+              if (allureUrl) {
+                linksSection += `- [📊 Allure Report (This Run)](${allureUrl})\n`;
+              }
+              if (allureLatest) {
+                linksSection += `- [📊 Allure Report (Latest)](${allureLatest})\n`;
+              }
 
               const body = `## 🤖 Automation Bot Report\n\n` +
                 `**Overall Status:** ${overallIcon} \`${jobStatus}\`\n\n` +
                 `### 🔧 Pipeline Steps\n\n` +
                 pipelineTable +
                 testSection +
-                `\n### 📎 Links\n\n` +
-                `- [📄 Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n` +
-                `- [📦 Download Report Artifact](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n`;
+                linksSection;
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -258,6 +288,7 @@ jobs:
               console.error('Error posting PR comment:', error);
             }
 
+      # ─── UPDATE PR STATUS ───
       - name: Update PR Status
         if: always() && github.event_name == 'issue_comment'
         uses: actions/github-script@v7
@@ -269,10 +300,10 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number
             });
-            
+
             let state = 'failure';
             let description = 'Tests failed';
-            
+
             try {
               const reportPath = 'test-results/cucumber-report.json';
               if (fs.existsSync(reportPath)) {
@@ -297,7 +328,7 @@ jobs:
             } catch (e) {
               console.error(e);
             }
-            
+
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -308,13 +339,45 @@ jobs:
               context: 'Automation Tests'
             });
 
-      - name: Microsoft Teams Notification
+      # ─── TEAMS: FINAL SUMMARY CARD ───
+      - name: Teams - Final Summary
         if: always()
         run: |
           $STATUS = "${{ job.status }}"
-          if ($STATUS -ne "success") { $ICON = "\u274C" } else { $ICON = "\u2705" }
+          $CHECKOUT = "${{ steps.checkout.outcome }}"
+          $NODE = "${{ steps.setup_node.outcome }}"
+          $DEPS = "${{ steps.dependencies.outcome }}"
+          $BROWSERS = "${{ steps.browsers.outcome }}"
+          $TESTS = "${{ steps.tests.outcome }}"
+          $REPORTS = "${{ steps.reports.outcome }}"
+          $ALLURE_DEPLOY = "${{ steps.deploy_allure.outcome }}"
+
+          function Get-Icon($s) {
+            if ($s -eq "success") { return "\u2705" }
+            elseif ($s -eq "failure") { return "\u274C" }
+            elseif ($s -eq "cancelled") { return "\u26A0\uFE0F" }
+            else { return "\u23ED\uFE0F" }
+          }
+
+          $iCheckout = Get-Icon $CHECKOUT
+          $iNode = Get-Icon $NODE
+          $iDeps = Get-Icon $DEPS
+          $iBrowsers = Get-Icon $BROWSERS
+          $iTests = Get-Icon $TESTS
+          $iReports = Get-Icon $REPORTS
+          $iAllure = Get-Icon $ALLURE_DEPLOY
+
+          if ($STATUS -eq "success") { $headerIcon = "\u2705"; $headerColor = "Good" }
+          else { $headerIcon = "\u274C"; $headerColor = "Attention" }
+
+          $ALLURE_URL = "$env:ALLURE_URL"
+          $allureBlock = ""
+          if ($ALLURE_URL -ne "") {
+            $allureBlock = ",{`"type`":`"TextBlock`",`"text`":`"\uD83D\uDCCA [View Allure Report]($ALLURE_URL)`",`"wrap`":true}"
+          }
+
           $body = @"
-          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"\u2705 Test Run Completed","weight":"Bolder","size":"Medium"},{"type":"TextBlock","text":"$ICON Status: $STATUS","wrap":true},{"type":"TextBlock","text":"[View Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}]}}]}
+          {"type":"message","attachments":[{"contentType":"application/vnd.microsoft.card.adaptive","content":{"$('$')schema":"http://adaptivecards.io/schemas/adaptive-card.json","type":"AdaptiveCard","version":"1.2","body":[{"type":"TextBlock","text":"$headerIcon Test Run #${{ github.run_number }} Complete","weight":"Bolder","size":"Medium","color":"$headerColor"},{"type":"FactSet","facts":[{"title":"Overall","value":"$STATUS"},{"title":"Checkout","value":"$iCheckout $CHECKOUT"},{"title":"Node.js","value":"$iNode $NODE"},{"title":"Dependencies","value":"$iDeps $DEPS"},{"title":"Browsers","value":"$iBrowsers $BROWSERS"},{"title":"Tests","value":"$iTests $TESTS"},{"title":"Reports","value":"$iReports $REPORTS"},{"title":"Allure Deploy","value":"$iAllure $ALLURE_DEPLOY"}]},{"type":"TextBlock","text":"\uD83D\uDD17 [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})","wrap":true}$allureBlock]}}]}
           "@
           $utf8 = [System.Text.Encoding]::UTF8.GetBytes($body)
           Invoke-RestMethod -Uri "${{ secrets.TEAMS_WEBHOOK_URL }}" -Method Post -ContentType "application/json; charset=utf-8" -Body $utf8
