@@ -103,8 +103,16 @@ jobs:
         id: reports
         if: always()
         run: |
-          npm run posttest
-          npm run report:generate
+          # Generate combined HTML report (runs report.ts directly)
+          npx ts-node src/test/hooks/report.ts
+
+          # Generate Allure HTML report (npx auto-installs allure-commandline if missing)
+          if (Test-Path "test-results\allure-results") {
+            npx -y allure-commandline@2.25.0 generate test-results/allure-results --clean -o test-results/allure-report
+          } else {
+            Write-Host "No allure-results directory found, skipping Allure generate"
+          }
+
           if (Test-Path "test-results") {
             Compress-Archive -Path "test-results\*" -DestinationPath "test-results\combined-report.zip" -Force
             Write-Host "Created test-results\combined-report.zip"
