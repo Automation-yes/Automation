@@ -99,7 +99,10 @@ jobs:
 
       - name: Run Tests
         id: tests
-        run: npm run test-qc
+        run: |
+          $env:HEADLESS = "true"
+          npx cucumber-js test
+        timeout-minutes: 15
 
       - name: Notify Tests Status
         if: always()
