@@ -265,8 +265,8 @@ jobs:
 
               const jobStatus = '${{ job.status }}';
               const overallIcon = jobStatus === 'success' ? '✅' : '❌';
-              const allureUrl = process.env.ALLURE_URL || '';
-              const allureLatest = process.env.ALLURE_LATEST || '';
+              const allureUrl = '${{ env.ALLURE_URL }}' || '';
+              const allureLatest = '${{ env.ALLURE_LATEST }}' || '';
 
               let linksSection = `\n### 📎 Links\n\n` +
                 `- [📄 Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n` +
