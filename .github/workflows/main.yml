@@ -174,42 +174,88 @@ jobs:
           script: |
             const fs = require('fs');
             try {
+              // Step statuses
+              const icon = (s) => s === 'success' ? '✅' : s === 'failure' ? '❌' : s === 'cancelled' ? '⚠️' : '⏭️';
+              const steps = [
+                { name: 'Checkout Code', status: '${{ steps.checkout.outcome }}' },
+                { name: 'Setup Node.js', status: '${{ steps.setup_node.outcome }}' },
+                { name: 'Install Dependencies', status: '${{ steps.dependencies.outcome }}' },
+                { name: 'Install Browsers', status: '${{ steps.browsers.outcome }}' },
+                { name: 'Run Tests', status: '${{ steps.tests.outcome }}' },
+              ];
+
+              let pipelineTable = `| Step | Status |\n|------|--------|\n`;
+              steps.forEach(s => {
+                pipelineTable += `| ${s.name} | ${icon(s.status)} ${s.status} |\n`;
+              });
+
+              // Test results
+              let testSection = '';
               const reportPath = 'test-results/cucumber-report.json';
               if (fs.existsSync(reportPath)) {
                 const results = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
                 let passed = 0;
                 let failed = 0;
-                
+                let scenarioDetails = [];
+
                 results.forEach(feature => {
                   if (feature.elements) {
                     feature.elements.forEach(scenario => {
-                      const isFailed = scenario.steps.some(step => step.result.status === 'failed');
+                      const isFailed = scenario.steps.some(step => step.result && step.result.status === 'failed');
                       if (isFailed) failed++; else passed++;
+                      scenarioDetails.push({
+                        feature: feature.name,
+                        scenario: scenario.name,
+                        status: isFailed ? 'Failed' : 'Passed',
+                        icon: isFailed ? '❌' : '✅'
+                      });
                     });
                   }
                 });
-                
+
                 const total = passed + failed;
                 const emoji = failed === 0 ? '✅' : '❌';
-                
-                const body = `### 🎭 Playwright Test Results\n\n` +
+
+                testSection = `\n### 🎭 Test Results Summary\n\n` +
                   `| Total | Passed | Failed |\n` +
                   `|-------|--------|--------|\n` +
                   `| ${total} | ${passed} ✅ | ${failed} ❌ |\n\n` +
-                  `**Status:** ${emoji} ${failed === 0 ? 'All Tests Passed' : 'Some Tests Failed'}\n\n` +
-                  `[Download Full Report](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
-                  
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: context.issue.number,
-                  body: body
-                });
+                  `**Result:** ${emoji} ${failed === 0 ? 'All Tests Passed' : 'Some Tests Failed'}\n\n`;
+
+                if (scenarioDetails.length > 0) {
+                  testSection += `<details><summary>📋 Scenario Details</summary>\n\n` +
+                    `| Feature | Scenario | Status |\n` +
+                    `|---------|----------|--------|\n`;
+                  scenarioDetails.forEach(s => {
+                    testSection += `| ${s.feature} | ${s.scenario} | ${s.icon} ${s.status} |\n`;
+                  });
+                  testSection += `\n</details>\n`;
+                }
               } else {
-                console.log('Report file not found, skipping comment.');
+                testSection = `\n> ⚠️ No test report found (test-results/cucumber-report.json missing)\n`;
               }
+
+              // Overall status
+              const jobStatus = '${{ job.status }}';
+              const overallIcon = jobStatus === 'success' ? '✅' : '❌';
+
+              const body = `## 🤖 Automation Bot Report\n\n` +
+                `**Overall Status:** ${overallIcon} \`${jobStatus}\`\n\n` +
+                `### 🔧 Pipeline Steps\n\n` +
+                pipelineTable +
+                testSection +
+                `\n### 📎 Links\n\n` +
+                `- [📄 Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n` +
+                `- [📦 Download Report Artifact](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
             } catch (error) {
-              console.error('Error processing test results:', error);
+              console.error('Error posting PR comment:', error);
             }
 
       - name: Update PR Status
